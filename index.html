@@ -185,11 +185,64 @@ footer{
   background:linear-gradient(180deg,transparent,#fef3c7);
 }
 footer .heart{color:#dc2626}
-@media (max-width:720px){
-  header.hero h1{font-size:26px}
-  section{padding:20px 18px}
-  main{padding:18px 12px 60px}
+/* === MOBILE / TABLET RESPONSIVE === */
+@media (max-width:900px){
+  html{font-size:15px}
+  body{font-size:15px;line-height:1.65}
+  main{padding:14px 10px 50px;max-width:100%}
+  header.hero{padding:32px 18px 28px;border-radius:0}
+  header.hero h1{font-size:22px;line-height:1.3;letter-spacing:-.3px}
+  header.hero p.lead{font-size:14px;margin-top:10px}
+  header.hero .badges{gap:6px;margin-top:14px}
+  header.hero .badges span{font-size:11px;padding:5px 10px}
+  /* TOC chip bar — horizontal scroll snap */
+  nav.toc{padding:10px 12px;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory}
+  nav.toc a{font-size:12.5px;padding:6px 11px;margin-right:6px;scroll-snap-align:start}
+  /* Sections */
+  section{padding:18px 14px;margin:18px 0;border-radius:14px}
+  section > h2{font-size:19px;line-height:1.3;padding-left:12px;flex-wrap:wrap;gap:8px}
+  section > h2 .num{font-size:13px;padding:3px 8px;min-width:auto}
+  h3{font-size:16px;margin-top:18px}
+  h4{font-size:14.5px}
+  /* Tables — bọc cho scroll ngang đẹp */
+  table{font-size:13px;display:block;overflow-x:auto;white-space:normal;border-radius:10px;-webkit-overflow-scrolling:touch}
+  table thead, table tbody, table tr{display:table;width:100%;table-layout:fixed}
+  th,td{padding:8px 10px;font-size:13px;word-break:break-word}
+  th{font-size:12.5px}
+  /* Code & kbd */
+  code,kbd{font-size:12.5px;padding:1px 5px;word-break:break-word}
+  pre{font-size:12.5px;padding:12px;overflow-x:auto}
+  /* Callouts */
+  .callout{padding:12px 14px;margin:12px 0;border-radius:10px;border-left-width:5px}
+  .callout strong{font-size:14px}
+  .callout p, .callout li{font-size:14px}
+  /* Lists */
+  ul,ol{padding-left:22px}
+  li{margin:6px 0}
+  /* Pills/tags */
+  .tag{font-size:11.5px;padding:2px 8px}
+  .hl,.hl-yellow,.hl-pink,.hl-blue,.hl-green{padding:1px 5px;border-radius:5px}
+  /* Flow diagram boxes — stack vertically */
+  .flow{flex-direction:column;align-items:stretch;gap:8px}
+  .flow .box{width:100%;text-align:center;font-size:13px;padding:10px}
+  .flow .arrow{transform:rotate(90deg);align-self:center;font-size:18px}
+  /* TOC tabs scroll hint */
+  nav.toc::after{content:"›";position:sticky;right:6px;color:#92400e;font-weight:900}
 }
+@media (max-width:480px){
+  header.hero h1{font-size:19px}
+  header.hero p.lead{font-size:13px}
+  section{padding:14px 12px;margin:14px 0}
+  section > h2{font-size:17px}
+  h3{font-size:15px}
+  th,td{padding:7px 8px;font-size:12.5px}
+  nav.toc a{font-size:12px;padding:5px 9px}
+  .badges{display:flex;flex-wrap:wrap}
+  main{padding:10px 8px 50px}
+}
+/* Cải thiện touch scroll & ngăn tràn ngang body */
+html,body{overflow-x:hidden;max-width:100vw}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px 0;border-radius:10px}
 </style></head><body>
 <header class="hero">
 <h1>📘 AWS Certified Developer Associate (DVA-C02)</h1>
