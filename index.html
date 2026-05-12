@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AWS DVA-C02 - Tai lieu on tap (Practice Test 1, cau 1-65)</title>
+<style>
+:root{--bg:#0f172a;--panel:#111827;--ink:#e5e7eb;--muted:#94a3b8;--acc:#f59e0b;--acc2:#22d3ee;--good:#34d399;--bad:#f87171;--border:#334155}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#0b1220,#0f172a);color:var(--ink);line-height:1.65}
+header{padding:36px 24px;border-bottom:1px solid var(--border);background:linear-gradient(90deg,#1e293b,#0f172a)}
+header h1{margin:0;font-size:30px;color:#fbbf24}
+header p{margin:8px 0 0;color:var(--muted)}
+nav.toc{position:sticky;top:0;background:#0b1220;border-bottom:1px solid var(--border);padding:10px 16px;overflow-x:auto;white-space:nowrap;z-index:50}
+nav.toc a{display:inline-block;color:var(--acc2);margin-right:10px;text-decoration:none;padding:6px 10px;border-radius:6px;background:#11203a;font-size:13px}
+nav.toc a:hover{background:#1e3a5f}
+main{max-width:1100px;margin:0 auto;padding:24px}
+section{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:22px 26px;margin:24px 0;box-shadow:0 4px 18px rgba(0,0,0,.3)}
+section h2{color:var(--acc);margin-top:0;border-bottom:2px solid var(--border);padding-bottom:8px;font-size:23px}
+section h3{color:#fcd34d;margin-top:24px;font-size:17px}
+section h4{color:#a7f3d0;margin:14px 0 6px;font-size:15px}
+ul,ol{padding-left:22px}li{margin:4px 0}
+code{background:#0b1220;color:#7dd3fc;padding:2px 6px;border-radius:4px;font-family:JetBrains Mono,Consolas,monospace;font-size:13px}
+pre{background:#0b1220;border:1px solid var(--border);padding:12px;border-radius:8px;overflow-x:auto;font-size:13px;color:#cbd5e1}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:14px}
+th,td{border:1px solid var(--border);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#fbbf24}
+.tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:4px}
+.tag.good{background:rgba(52,211,153,.15);color:var(--good);border:1px solid var(--good)}
+.tag.bad{background:rgba(248,113,113,.15);color:var(--bad);border:1px solid var(--bad)}
+.tag.info{background:rgba(34,211,238,.15);color:var(--acc2);border:1px solid var(--acc2)}
+.callout{border-left:4px solid var(--acc);background:#1c1f2b;padding:12px 16px;margin:12px 0;border-radius:6px}
+.callout.warn{border-color:var(--bad)}
+.callout.tip{border-color:var(--good)}
+footer{padding:24px;text-align:center;color:var(--muted);font-size:13px;border-top:1px solid var(--border);margin-top:40px}
+</style></head><body>
+<header>
+<h1>AWS Certified Developer Associate (DVA-C02)</h1>
+<p>Tai lieu on tap tong hop tu Practice Test 1 (cau 1 - 65). To chuc theo nhom service, lam ro ly thuyet va cach ket noi giua cac service.</p>
+</header>
+<nav class="toc">
+<a href="#compute">Compute & Serverless</a>
+<a href="#storage">Storage</a>
+<a href="#database">Database</a>
+<a href="#network">Networking & Delivery</a>
+<a href="#security">Security & Identity</a>
+<a href="#messaging">Messaging & Integration</a>
+<a href="#cicd">CI/CD & IaC</a>
+<a href="#monitor">Monitoring & Observability</a>
+</nav>
+<main>
+<section id="compute">
+<h2>1. Compute & Serverless</h2>
+<h3>AWS Lambda - kien thuc cot loi</h3>
+<p>Lambda chay code khong can quan ly server. Moi invocation chay trong mot <b>execution environment</b> (sandbox MicroVM). Vong doi gom 2 pha:</p>
+<ul>
+<li><b>Init phase</b> (allocation time): tai code, load layers, chay code o global scope, khoi tao SDK client, DB connection. Pha nay tinh phi nhung KHONG tinh trong duration cua handler khi co Provisioned Concurrency.</li>
+<li><b>Invoke phase</b>: chay handler. Cold start = lan dau khoi tao moi truong. Warm start = tai su dung moi truong san co.</li>
+</ul>
+<h4>Cold start - cach giam</h4>
+<ul>
+<li><b>Provisioned Concurrency</b>: giu sang execution environment, chay init truoc, dam bao latency on dinh. Chi gan duoc cho <b>version cu the hoac alias</b>, KHONG gan cho <code>$LATEST</code>. Phai publish version moi gan duoc.</li>
+<li><b>Reserved Concurrency</b>: chi gioi han so concurrent execution (quota), khong giam cold start.</li>
+<li>Dat code init ra <b>global scope</b> (ngoai handler) de tai su dung connection, SDK client giua cac invocation tren cung container.</li>
+<li>Tang <b>memory</b> dong nghia tang CPU/network -> giam tong thoi gian thuc thi (vd: xu ly anh, thumbnail).</li>
+</ul>
+<h4>Lambda VPC access</h4>
+<ul>
+<li>Mac dinh Lambda khong nam trong VPC -> khong truy cap duoc resource private (RDS, EC2 private subnet).</li>
+<li>De truy cap: <b>attach Lambda vao VPC + private subnets + security group</b>. Lambda tao ENI trong subnet, dung Hyperplane ENI quan ly chia se.</li>
+<li>Khong dung NAT Gateway de Lambda noi voi resource trong VPC (NAT chi cho outbound Internet).</li>
+<li>Khong dung VPC Endpoint de Lambda noi EC2 (Endpoint danh cho AWS service nhu S3, DynamoDB).</li>
+</ul>
+<h4>Lambda + RDS / Aurora</h4>
+<ul>
+<li>Surge traffic + nhieu Lambda mo connection -> dung <b>RDS Proxy</b> de pool connection, tranh exhaust max_connections.</li>
+<li>Best practice: mo DB connection o <b>global scope</b> (ngoai handler) de reuse.</li>
+</ul>
+<h4>Lambda timeout vs SQS visibility timeout</h4>
+<ul>
+<li>Khi Lambda trigger bo SQS, neu xu ly lau hon <b>Visibility Timeout</b> cua queue -> message tro lai queue, bi xu ly trung.</li>
+<li>Quy tac: <code>SQS Visibility Timeout >= Lambda timeout + buffer</code>, va Visibility Timeout phai du dai cho ca call ngoai (vd 60s goi API ML).</li>
+<li>Tang Lambda memory/timeout KHONG sua duoc trung lap; phai chinh visibility timeout.</li>
+</ul>
+<h4>Lambda Destinations (async)</h4>
+<ul>
+<li>Khi Lambda invoke async (vd tu SNS), co the cau hinh <b>Success destination</b> va <b>Failure destination</b> = SQS / SNS / EventBridge / Lambda.</li>
+<li>Khac voi DLQ: DLQ chi nhan event THAT BAI sau khi retry het. Destinations co them success + ghi du metadata.</li>
+<li>De log moi invocation -> dung 2 destination (success + failure) cung tro ve 1 SQS.</li>
+</ul>
+<h4>Lambda alias + weighted routing (canary/staging)</h4>
+<ul>
+<li><b>Alias</b> tro toi 1 hoac 2 version voi % traffic (weighted). Cho phep canary deploy: vi du 90% prod version, 10% new version.</li>
+<li>SDK/API Gateway goi alias <code>staging</code> -> Lambda tu split traffic.</li>
+<li>Khong gan weight cho version truc tiep, chi alias moi co weight.</li>
+</ul>
+<h4>Lambda /tmp ephemeral storage</h4>
+<ul>
+<li>Moi execution environment co thu muc <code>/tmp</code>, mac dinh 512 MB, co the tang toi <b>10 GB</b>.</li>
+<li>Tot cho workload doc lap nhieu lan tu mot file lon (vd download video tu S3, xu ly nhieu pass). Doc local nhanh hon nhieu so voi S3 GetObject lap lai.</li>
+<li>Lambda khong gan EBS, khong gan ENA - chi co /tmp hoac mount EFS.</li>
+</ul>
+<h4>Lambda Insights vs X-Ray</h4>
+<ul>
+<li><b>CloudWatch Lambda Insights</b>: theo doi performance noi tai (CPU, memory, init duration, network). Bat bang cach: them <b>Lambda Insights Extension Layer</b> + gan policy <code>CloudWatchLambdaInsightsExecutionRolePolicy</code>.</li>
+<li><b>AWS X-Ray</b>: tracing distributed, do latency giua Lambda va downstream service (S3, DynamoDB...). Tren service map, click vao <b>edge/line</b> giua 2 node de xem latency bao gom network.</li>
+<li>Logs Insights chi query log; <code>@duration</code> la tong thoi gian Lambda, khong tach rieng downstream.</li>
+</ul>
+<h3>AWS Elastic Beanstalk - Deployment Policies</h3>
+<table>
+<tr><th>Policy</th><th>Mo ta</th><th>Downtime</th><th>Toc do</th></tr>
+<tr><td><b>All-at-once</b></td><td>Deploy moi instance cung luc</td><td>CO downtime</td><td>Nhanh nhat</td></tr>
+<tr><td><b>Rolling</b></td><td>Deploy theo batch, giam capacity tam thoi</td><td>Khong, nhung giam performance</td><td>Trung binh</td></tr>
+<tr><td><b>Rolling with additional batch</b></td><td>Them batch moi truoc khi xoa cu</td><td>Khong</td><td>Cham hon</td></tr>
+<tr><td><b>Immutable</b></td><td>Tao ASG moi, switch CNAME khi OK</td><td>Khong, zero downtime</td><td>Cham nhat, an toan nhat</td></tr>
+<tr><td><b>Traffic splitting (Canary)</b></td><td>Chuyen 1 phan traffic sang version moi</td><td>Khong</td><td>Test truoc khi rollout</td></tr>
+</table>
+<h3>AWS CodeDeploy - Deployment Strategies</h3>
+<ul>
+<li><b>Canary</b>: shift 1 phan nho truoc (vd 10% trong 5 phut), neu OK thi roll 100% cung mot luc -> phu hop "thu nhom nho roi deploy dong loat".</li>
+<li><b>Linear</b>: shift theo % deu dan (vd 10% moi 10 phut).</li>
+<li><b>All-at-once</b>: deploy het cung luc.</li>
+<li><b>In-place</b> vs <b>Blue/Green</b>: in-place update truc tiep instance dang chay; blue/green tao moi truong moi va switch.</li>
+</ul>
+<h3>Amazon ECS Fargate</h3>
+<ul>
+<li>Fargate khong quan ly EC2 host. Container chay tren ha tang AWS managed.</li>
+<li><b>Shared persistent storage</b> giua nhieu task -> dung <b>Amazon EFS</b> qua <code>efsVolumeConfiguration</code> va <code>mountPoints</code> trong task definition.</li>
+<li><b>EBS</b> gan vao EC2 instance, khong gan tu nhien cho Fargate task (co support EBS volume cho task tu 2024 nhung khong share duoc).</li>
+<li><b>DockerVolumeConfiguration</b> chi ho tro EC2 launch type, KHONG ho tro Fargate.</li>
+<li><b>ECS Task IAM Role</b> (bat ECS_ENABLE_TASK_IAM_ROLE=true): cap quyen rieng cho moi task, dap ung least privilege; tach biet voi <b>EC2 instance profile role</b> (cho ECS agent).</li>
+</ul>
+</section>
+
+<section id="storage">
+<h2>2. Storage - S3, EBS, EFS, ElastiCache</h2>
+<h3>Amazon S3 - kien thuc cot loi</h3>
+<h4>S3 Versioning + Lifecycle</h4>
+<ul>
+<li>Khi bat <b>Versioning</b>, moi PutObject tao mot version moi. Object cu thanh <b>noncurrent version</b>.</li>
+<li>De gioi han so version giu lai (vd current + 1 truoc), dung <b>S3 Lifecycle rule</b>: <code>NoncurrentVersionExpiration</code> voi <code>NewerNoncurrentVersions</code>.</li>
+<li><b>Bucket policy</b> chi quan ly access, khong quan ly retention.</li>
+<li><b>Object Lock</b> = WORM (compliance), khong dung de gioi han version.</li>
+</ul>
+<h4>S3 Encryption - phan biet ro</h4>
+<table>
+<tr><th>Loai</th><th>Ai quan ly key</th><th>Dac diem</th></tr>
+<tr><td><b>SSE-S3</b></td><td>S3 tu quan ly (AES-256)</td><td>Don gian nhat, khong audit duoc</td></tr>
+<tr><td><b>SSE-KMS</b></td><td>AWS KMS (CMK)</td><td>Audit qua CloudTrail, kiem soat quyen kms:Decrypt</td></tr>
+<tr><td><b>SSE-C</b></td><td>Customer cung cap key</td><td>S3 khong luu key</td></tr>
+<tr><td><b>DSSE-KMS</b></td><td>2 lop ma hoa, KMS</td><td>Workload compliance cao</td></tr>
+<tr><td><b>Client-side</b></td><td>Client ma hoa truoc khi upload</td><td>Dung <code>GenerateDataKey</code> + envelope encryption</td></tr>
+</table>
+<div class="callout tip"><b>Mau cau hoi:</b> "Encrypt BEFORE upload" -> client-side encryption voi <code>kms:GenerateDataKey</code>. Lambda goi GenerateDataKey nhan plaintext data key + CiphertextBlob, ma hoa file bang plaintext key, store CiphertextBlob trong metadata. "Encrypt AT REST" -> SSE-S3 / SSE-KMS.</div>
+<h4>In-transit encryption (S3)</h4>
+<ul>
+<li>HTTPS bao mat kenh truyen. De ENFORCE HTTPS cho bucket: dung bucket policy voi <code>"aws:SecureTransport": "false"</code> -> Deny.</li>
+<li>Cai cert tren EC2, dung VPC Endpoint... KHONG enforce HTTPS o phia S3.</li>
+</ul>
+<pre>{
+  "Effect": "Deny",
+  "Principal": "*",
+  "Action": "s3:*",
+  "Resource": ["arn:aws:s3:::bucket","arn:aws:s3:::bucket/*"],
+  "Condition": {"Bool": {"aws:SecureTransport": "false"}}
+}</pre>
+<h4>S3 Object Lambda</h4>
+<ul>
+<li>Cho phep <b>bien doi data on-the-fly</b> khi client goi GetObject thong qua <b>S3 Object Lambda Access Point</b>.</li>
+<li>Use case: redact PII, resize anh, convert format ma khong can luu nhieu ban copy hoac refactor consumer.</li>
+<li>Khac biet: ma hoa (SSE) KHONG che PII (decrypt xong van thay); muon che PII thi can transformation.</li>
+</ul>
+<h4>S3 storage classes - lien quan latency</h4>
+<ul>
+<li><b>S3 Standard</b>: truy cap tuc thi, latency thap, gia cao hon.</li>
+<li><b>S3 Glacier / Deep Archive</b>: can <b>restore</b> tu vai phut den vai gio -> KHONG dap ung yeu cau "trong 5 phut".</li>
+<li><b>S3 Transfer Acceleration</b>: tang toc upload/download qua CloudFront edge, KHONG phai cho content delivery + language logic.</li>
+</ul>
+<h4>S3 message pattern voi SQS</h4>
+<ul>
+<li>SQS message gioi han 256 KB. Voi file 10 MB: luu file vao <b>S3</b>, gui <b>S3 location (key/URL)</b> vao SQS de consumer xu ly bat dong bo.</li>
+</ul>
+<h3>Amazon EFS</h3>
+<ul>
+<li>File system NFS managed, hieu nang co the scale, share giua nhieu EC2/ECS task.</li>
+<li>Ho tro <b>Fargate</b> mount qua task definition (<code>efsVolumeConfiguration</code>).</li>
+</ul>
+<h3>Amazon EBS</h3>
+<ul>
+<li>Block storage gan vao 1 EC2 instance (gp3 default).</li>
+<li>Khong share trong cung Region (tru io2 Block Express multi-attach gioi han).</li>
+<li>Khong dung cho Lambda hoac Fargate share storage.</li>
+</ul>
+<h3>Amazon ElastiCache</h3>
+<ul>
+<li>In-memory cache, latency microsecond.</li>
+<li><b>Memcached</b>: don gian, multi-thread, khong persistence, dung cho session cache.</li>
+<li><b>Redis</b>: persistence, pub/sub, replication, cluster mode.</li>
+<li><b>Use case dien hinh</b>: tach session state khoi EC2 web server (stateless tier) -> dap ung scale-out + giam tai memory. Lua chon "lowest-latency session store" -> ElastiCache.</li>
+<li>So sanh: DynamoDB, RDS deu cao latency hon ElastiCache.</li>
+</ul>
+</section>
+
+<section id="database">
+<h2>3. Database - DynamoDB, RDS/Aurora</h2>
+<h3>Amazon DynamoDB</h3>
+<h4>Query vs Scan vs GetItem vs BatchGetItem</h4>
+<table>
+<tr><th>Operation</th><th>Khi dung</th><th>Hieu nang</th></tr>
+<tr><td><b>GetItem</b></td><td>Biet chinh xac partition key (+ sort key)</td><td>1 item, RCU thap nhat</td></tr>
+<tr><td><b>BatchGetItem</b></td><td>Nhieu item, biet ro full key cua tung item</td><td>Hieu qua khi co list keys cu the</td></tr>
+<tr><td><b>Query</b></td><td>Tim theo partition key (co the sort key range), tren table hoac GSI/LSI</td><td>Toi uu RCU, chi doc item phu hop</td></tr>
+<tr><td><b>Scan</b></td><td>Doc TOAN BO table/index</td><td>Ton RCU nhat, nen tranh</td></tr>
+</table>
+<div class="callout tip"><b>Tip:</b> Khi co GSI voi partition key la field can loc, luon dung <b>Query tren GSI</b> de tiet kiem RCU. Scan + FilterExpression van phai doc het roi moi loc -> dat.</div>
+<h4>DynamoDB Streams</h4>
+<ul>
+<li>Phat su kien khi co thay doi tren item: <code>INSERT</code>, <code>MODIFY</code>, <code>REMOVE</code>.</li>
+<li>Stream view type: <b>KEYS_ONLY</b>, <b>NEW_IMAGE</b>, <b>OLD_IMAGE</b>, <b>NEW_AND_OLD_IMAGES</b>.</li>
+<li>Khi can du lieu sau khi update (vd dong bo sang Google Sheet, ElasticSearch) -> chon <b>NEW_IMAGE</b>.</li>
+<li>Trigger Lambda consume stream de xu ly downstream.</li>
+</ul>
+<h4>DAX (DynamoDB Accelerator)</h4>
+<ul>
+<li>In-memory cache cho DynamoDB, giam latency doc tu ms xuong microsecond.</li>
+<li>Chi tang toc doc, khong phat stream/event. Khong thay the duoc Streams.</li>
+</ul>
+<h3>Amazon RDS / Aurora</h3>
+<ul>
+<li>Aurora MySQL/PostgreSQL: managed, scale storage tu dong, replica nhanh.</li>
+<li>Khi co nhieu Lambda concurrent connect -> dung <b>RDS Proxy</b> (connection pooling, su dung IAM auth, lay credential tu Secrets Manager).</li>
+<li>Connection bao mat: dung Secrets Manager rotation; Lambda fetch credential <b>tai runtime</b> (khong dung env var de tu cap nhat).</li>
+<li>Encryption at-rest cua RDS khong tu giai ma ung dung level (vd CloudFront Field-Level Encryption).</li>
+</ul>
+</section>
+
+<section id="network">
+<h2>4. Networking & Content Delivery</h2>
+<h3>Application Load Balancer (ALB)</h3>
+<table>
+<tr><th>Header</th><th>Y nghia</th></tr>
+<tr><td><b>X-Forwarded-For</b></td><td>Client IP that su (chuoi IP qua cac proxy)</td></tr>
+<tr><td>X-Forwarded-Proto</td><td>Protocol goc cua client (http/https)</td></tr>
+<tr><td>X-Forwarded-Host</td><td>Host header goc</td></tr>
+<tr><td>X-Forwarded-Port</td><td>Port goc</td></tr>
+</table>
+<p>Phan tich pattern theo IP client -> dung <b>X-Forwarded-For</b>.</p>
+<h3>Amazon CloudFront</h3>
+<ul>
+<li>CDN toan cau, cache tai edge, giam latency.</li>
+<li><b>Field-Level Encryption (FLE)</b>: ma hoa cac field nhay cam tai edge bang RSA public key (tu KMS), origin/ung dung phai <b>decrypt bang private key</b> truoc khi luu DB. Neu khong decrypt -> DB se nhan ciphertext (loi thuong gap).</li>
+<li>Headers dac biet:
+  <ul>
+    <li><b>CloudFront-Viewer-Country</b>: ma quoc gia cua user.</li>
+    <li><b>Accept-Language</b>: ngon ngu trinh duyet user.</li>
+  </ul>
+  Forward 2 header nay len origin de phuc vu content theo dia ly + ngon ngu.</li>
+<li>Lambda@Edge: chay logic JS/Python tai edge, dung cho FLE custom, A/B testing, header manipulation.</li>
+</ul>
+<h3>Amazon API Gateway</h3>
+<table>
+<tr><th>Loai</th><th>Authorizer ho tro</th></tr>
+<tr><td><b>REST API</b></td><td>IAM, Lambda authorizer, Cognito User Pools</td></tr>
+<tr><td><b>HTTP API</b></td><td>IAM, Lambda authorizer, <b>JWT authorizer (built-in)</b></td></tr>
+<tr><td><b>WebSocket API</b></td><td>IAM, Lambda authorizer (KHONG co JWT built-in)</td></tr>
+</table>
+<div class="callout"><b>JWT khong code custom -> HTTP API + JWT authorizer.</b> WebSocket khong ho tro JWT built-in.</div>
+<h3>Amazon Route 53</h3>
+<ul>
+<li>Alias record tro toi ALB, CloudFront, S3 website, API Gateway.</li>
+<li>Routing policies: simple, weighted, latency, failover, geolocation, geoproximity, multi-value.</li>
+<li>Geolocation chi route theo quoc gia, KHONG xu ly language header.</li>
+</ul>
+<h3>AWS Global Accelerator</h3>
+<ul>
+<li>Toi uu duong di TCP/UDP qua AWS backbone, anycast IP.</li>
+<li>KHONG cache content (khac CloudFront). Phu hop game/IoT/realtime.</li>
+</ul>
+<h3>VPC</h3>
+<ul>
+<li><b>VPC Flow Logs</b>: ghi metadata IP traffic in/out trong VPC. Dung de xac dinh request co toi AWS network hay chua (vd ALB timeout).</li>
+<li><b>VPC Endpoint</b>: private connect toi AWS service (S3, DynamoDB, KMS,...) khong qua Internet.</li>
+<li><b>PrivateLink</b>: chia se service giua VPC/account.</li>
+<li><b>NAT Gateway</b>: cho outbound Internet tu private subnet.</li>
+</ul>
+</section>
+
+<section id="security">
+<h2>5. Security & Identity</h2>
+<h3>IAM</h3>
+<ul>
+<li><b>Least privilege</b>: cap dung quyen can thiet, scope theo Resource ARN.</li>
+<li>DynamoDB read actions: <code>GetItem</code>, <code>BatchGetItem</code>, <code>Query</code>, <code>Scan</code>.</li>
+<li>DynamoDB write actions: <code>PutItem</code>, <code>UpdateItem</code>, <code>DeleteItem</code>, <code>BatchWriteItem</code>.</li>
+<li>Trust policy voi <code>aws:SourceArn</code> = ARN chinh xac cua resource (vd state machine cua Step Functions) -> chi resource do moi assume duoc role.</li>
+<li>Tranh dung <code>"*"</code> hoac <code>StringNotEquals</code> ngu canh sai -> cap qua rong.</li>
+</ul>
+<h3>AWS KMS</h3>
+<ul>
+<li><b>Customer managed key</b>: tu quan ly key policy, cho phep cross-account access. <b>AWS managed key</b> khong sua duoc policy.</li>
+<li><b>Cross-account secret access</b>: can ket hop IAM policy (Secrets Manager) o app account + KMS key policy (kms:Decrypt, kms:DescribeKey) o key owner account.</li>
+<li><b>GenerateDataKey</b>: tra ve plaintext data key + CiphertextBlob -> dung cho <b>envelope/client-side encryption</b>. Plaintext key ma hoa data, CiphertextBlob luu kem object de decrypt sau.</li>
+<li>KMS keys KHONG replicate cross-account; phai tao key moi va cap policy.</li>
+</ul>
+<h3>AWS Secrets Manager</h3>
+<ul>
+<li>Luu credential DB, API key, connection string. Ho tro <b>automatic rotation</b>.</li>
+<li>Lambda <b>fetch tai runtime</b> de luon dung gia tri moi (khong nhung qua env var -> env var dong bang luc init).</li>
+<li>Lambda Extension cua Secrets Manager: caching o moi truong runtime.</li>
+</ul>
+<h3>AWS Systems Manager Parameter Store</h3>
+<ul>
+<li>Luu config va secret (SecureString = ma hoa qua KMS).</li>
+<li>Re hon Secrets Manager, nhung khong co rotation built-in cho DB credential.</li>
+</ul>
+<h3>AWS AppConfig</h3>
+<ul>
+<li>Quan ly <b>feature flags</b> + config dynamic.</li>
+<li><b>AppConfig Agent</b> tren EC2/Lambda Extension poll dinh ky, cache local, app doc qua <b>localhost endpoint</b> -> overhead toi thieu, rollback an toan.</li>
+</ul>
+<h3>Amazon Cognito</h3>
+<table>
+<tr><th>Component</th><th>Vai tro</th></tr>
+<tr><td><b>User Pool</b></td><td>Auth: sign-up, sign-in, MFA, password policy, recovery, phat hanh JWT</td></tr>
+<tr><td><b>Identity Pool</b></td><td>Cap temporary AWS credentials (qua STS) de goi truc tiep AWS service</td></tr>
+</table>
+<ul>
+<li><b>Mobile app sign in + access backend</b> -> User Pool + JWT goi API Gateway/Lambda.</li>
+<li><b>Social login (Google, Facebook, Apple, Amazon)</b> -> User Pool ho tro federation (web identity federation).</li>
+<li>Mobile app MFA: bat MFA tren User Pool, Cognito tu gui SMS/TOTP - <b>khong code SNS Publish</b>.</li>
+<li>Khong dung IAM users cho end-user.</li>
+</ul>
+<h3>AWS STS</h3>
+<ul>
+<li><b>AssumeRole</b>: nhan temporary credentials de test quyen role hoac cross-account.</li>
+<li><b>Regional endpoints</b> (<code>sts.&lt;region&gt;.amazonaws.com</code>) giam latency va tang resilience so voi global endpoint.</li>
+<li>AssumeRoleWithSAML: federation enterprise (ADFS, Okta). AssumeRoleWithWebIdentity: OIDC (Cognito, Google,...).</li>
+</ul>
+<h3>AWS Directory Service</h3>
+<ul>
+<li><b>AWS Directory Service for Microsoft AD</b>: managed AD trong AWS, ho tro <b>trust relationship</b> voi on-prem AD.</li>
+<li>Nhan vien dang nhap AWS Console bang AD credentials hien co, IAM role tro toi cac group AD -> RBAC.</li>
+<li>It overhead hon viec tu xay identity broker hoac SAML federation thu cong.</li>
+</ul>
+<h3>AWS WAF, AWS Config, Cross-cutting</h3>
+<ul>
+<li><b>WAF</b>: loc request HTTP/HTTPS (SQLi, geo match...). KHONG ma hoa noi dung.</li>
+<li><b>AWS Config + managed rule</b> <code>acm-certificate-expiration-check</code>: phat hien cert ACM (bao gom imported certs) sap het han. Ket hop EventBridge rule + SNS de canh bao.</li>
+<li>Su kien "ACM Certificate Approaching Expiration" cua EventBridge chi cho ACM-managed certs (khong cho imported certs).</li>
+</ul>
+</section>
+
+<section id="messaging">
+<h2>6. Messaging & Integration</h2>
+<h3>Amazon SNS</h3>
+<ul>
+<li>Pub/Sub topic, fan-out tin nhan toi nhieu subscriber (SQS, Lambda, HTTPS, SMS, email).</li>
+<li><b>Standard topic</b>: best-effort ordering, at-least-once.</li>
+<li><b>FIFO topic</b>: ordering (MessageGroupId) + deduplication. Phu hop nghiep vu can dam bao thu tu va khong trung (vi du SMS xac nhan giao dich).</li>
+<li><b>Subscription filter policies</b>: loc message tai subscription level (theo message attribute). Tot nhat cho fan-out co dieu kien (so voi loc trong code consumer).</li>
+<li><b>S3 -> SNS -> nhieu SQS</b> voi filter policy = pattern fan-out chuan, khong can sua Lambda code.</li>
+</ul>
+<h3>Amazon SQS</h3>
+<ul>
+<li><b>Standard queue</b>: throughput cao, ordering best-effort, at-least-once.</li>
+<li><b>FIFO queue</b>: dam bao thu tu va exactly-once, throughput thap hon.</li>
+<li><b>Visibility Timeout</b>: thoi gian message bi "an" sau khi consumer doc. Lambda timeout phai &lt;= visibility timeout - buffer.</li>
+<li><b>Long polling</b> (<code>WaitTimeSeconds</code> 1-20): giam empty receive, tiet kiem chi phi.</li>
+<li><b>Batching</b>: ReceiveMessage co the lay toi 10 message/lan -> giam request, giam chi phi.</li>
+<li><b>DLQ</b>: nhan message that bai sau khi het maxReceiveCount; chi log loi, khong log success.</li>
+<li>SQS message max 256 KB; voi payload lon dung <b>SQS Extended Client + S3</b> (luu S3, gui reference).</li>
+</ul>
+<h3>EventBridge / EventBridge Pipes / Scheduler</h3>
+<ul>
+<li><b>EventBridge Rules</b>: pattern match event tu AWS service hoac custom -> target (Lambda, SNS, SQS, Step Functions...).</li>
+<li><b>EventBridge Scheduler</b>: lich hen gio (cron/rate) - chi de invoke, KHONG dieu phoi workflow theo phu thuoc.</li>
+<li><b>EventBridge Pipes</b>: pipe source -> filter -> enrichment -> target. Khong gui SMS truc tiep.</li>
+</ul>
+<h3>AWS Step Functions</h3>
+<ul>
+<li>Orchestration workflow (Amazon States Language). Phu hop khi can chay nhieu Lambda <b>theo thu tu</b>, voi retry/error handling, parallel, choice...</li>
+<li>So sanh: SNS/SQS khong dam bao thu tu giua nhieu function khac nhau theo chain logic.</li>
+</ul>
+<h3>Amazon Kinesis Data Firehose</h3>
+<ul>
+<li>Streaming ETL toi S3, Redshift, OpenSearch, HTTP endpoint.</li>
+<li>Ho tro <b>data transformation via Lambda</b>: bien doi/redact PII truoc khi ghi xuong destination.</li>
+<li>Khong gui SMS truc tiep, khong target la Step Functions/EC2.</li>
+</ul>
+</section>
+
+<section id="cicd">
+<h2>7. CI/CD & IaC</h2>
+<h3>AWS CodePipeline</h3>
+<ul>
+<li>Orchestration pipeline: Source -> Build -> Test -> Deploy.</li>
+<li>Tich hop CodeCommit/GitHub/S3 (source), CodeBuild (build/test), CodeDeploy, CloudFormation, Step Functions (deploy/orchestration).</li>
+</ul>
+<h3>AWS CodeBuild</h3>
+<ul>
+<li>Managed build server. Chay script tuy y theo <code>buildspec.yml</code>: build, unit test, <b>integration test</b>, package artifact.</li>
+</ul>
+<h3>AWS CodeDeploy</h3>
+<ul>
+<li>Deploy app len EC2/On-Prem, Lambda, ECS.</li>
+<li>Service role can policy <b>AWSCodeDeployRole</b> (EC2/On-Prem) hoac <b>AWSCodeDeployRoleForECS</b>. Loi <code>IAM_ROLE_PERMISSIONS</code> -> dinh kem dung policy.</li>
+<li>Deployment config: Canary, Linear, AllAtOnce; tra ve <b>traffic shifting</b> cho Lambda alias.</li>
+</ul>
+<h3>AWS CloudFormation</h3>
+<ul>
+<li>IaC khai bao bang JSON/YAML.</li>
+<li><b>DeletionPolicy</b>: mac dinh <b>Delete</b>. Co the dat <code>Retain</code> hoac <code>Snapshot</code> de bao toan resource khi update/delete stack.</li>
+<li><b>Doi ten resource (logical ID hoac Name property)</b> trong template = CloudFormation xem do la resource moi -> tao moi + xoa cu (theo DeletionPolicy).</li>
+<li><b>Change sets</b>: preview thay doi truoc khi apply, KHONG phai cong cu test code local.</li>
+<li><b>StackSets</b>: deploy stack tren <b>nhieu account/region</b> mot lan -> phu hop multi-account.</li>
+</ul>
+<h3>AWS SAM (Serverless Application Model)</h3>
+<ul>
+<li>Extension cua CloudFormation cho serverless.</li>
+<li><b>sam local invoke / sam local start-api</b>: test Lambda + API Gateway tren may local.</li>
+<li>Tich hop CodePipeline: dung <b>SAM CLI</b> trong cac stage de build, package, deploy.</li>
+</ul>
+</section>
+
+<section id="monitor">
+<h2>8. Monitoring & Observability</h2>
+<h3>Amazon CloudWatch</h3>
+<ul>
+<li><b>Logs</b>: thu log tu Lambda, EC2 (CloudWatch agent), on-premises (CloudWatch agent cai tren may + IAM credentials).</li>
+<li><b>Logs Insights</b>: query log voi cu phap rieng. Co the dung <code>@duration</code> cho Lambda log nhung do la tong thoi gian, khong tach downstream.</li>
+<li><b>Embedded Metric Format (EMF)</b>: log JSON theo dac ta EMF -> CloudWatch tu trich xuat custom metrics vao namespace tuy chon (khong can goi PutMetricData rieng).</li>
+<li><b>Lambda Insights</b>: extension layer + IAM policy (<code>CloudWatchLambdaInsightsExecutionRolePolicy</code>) -> theo doi performance Lambda (memory, CPU, init duration).</li>
+<li><b>CloudWatch RUM</b>: monitoring frontend (real user monitoring), KHONG dung de tao metric tu Lambda log.</li>
+</ul>
+<h3>AWS X-Ray</h3>
+<ul>
+<li>Distributed tracing. Bat tren Lambda (active tracing) hoac SDK instrumentation.</li>
+<li><b>Service map</b>: cac node (service) va edge (line giua chung). Click <b>edge</b> = latency bao gom network giua 2 service (vd Lambda -> S3). Click <b>node</b> = chi do latency cua service do.</li>
+<li>Active tracing cho SNS: do latency publish -> deliver, dung de phat hien rate va latency cua FIFO topic.</li>
+</ul>
+<h3>VPC Flow Logs</h3>
+<ul>
+<li>Ghi IP traffic in/out cua ENI. Dung de kiem tra request co toi VPC chua, traffic bi accept/reject.</li>
+</ul>
+<h3>AWS Config</h3>
+<ul>
+<li>Theo doi config va compliance cua resource. Managed rules vd <code>acm-certificate-expiration-check</code>, <code>s3-bucket-public-read-prohibited</code>.</li>
+<li>Ket hop EventBridge rule (Config Rules Compliance Change) + SNS = canh bao tu dong.</li>
+</ul>
+<h3>AWS CloudTrail</h3>
+<ul>
+<li>Ghi <b>API call</b> tren account (audit). KHONG ghi performance/latency cua service.</li>
+</ul>
+</section>
+
+<section>
+<h2>9. Tom luoc cac dinh tuyen quyet dinh thuong gap</h2>
+<table>
+<tr><th>Yeu cau</th><th>Lua chon dung</th></tr>
+<tr><td>Client IP that sau ALB</td><td>X-Forwarded-For</td></tr>
+<tr><td>Latency giua Lambda va S3</td><td>X-Ray active tracing, click edge tren service map</td></tr>
+<tr><td>Cross-account access S3 + KMS</td><td>IAM policy + KMS key policy (kms:Decrypt + kms:DescribeKey)</td></tr>
+<tr><td>Test feature voi nhom nho roi rollout 100%</td><td>Canary deployment</td></tr>
+<tr><td>Giu 1 noncurrent version</td><td>S3 Lifecycle rule (NewerNoncurrentVersions)</td></tr>
+<tr><td>Query orders theo accountId co GSI</td><td>Query tren GSI (khong Scan)</td></tr>
+<tr><td>Field-level encryption tai edge</td><td>CloudFront + Lambda@Edge + RSA key trong KMS</td></tr>
+<tr><td>DB credentials tu cap nhat khi rotate</td><td>Secrets Manager + fetch runtime trong Lambda</td></tr>
+<tr><td>Encrypt sensitive data trong S3</td><td>SSE-S3 (don gian) hoac SSE-KMS (audit)</td></tr>
+<tr><td>Fan-out 1 producer -> nhieu Lambda theo dieu kien</td><td>SNS topic + subscription filter policies</td></tr>
+<tr><td>Mobile app sign-up/sign-in + backend</td><td>Cognito User Pool</td></tr>
+<tr><td>Redact PII khi consumer goi GetObject S3</td><td>S3 Object Lambda Access Point</td></tr>
+<tr><td>Trust policy cho 1 state machine duy nhat</td><td>ArnLike aws:SourceArn = full ARN</td></tr>
+<tr><td>Doc lap nhieu lan tu file lon trong Lambda</td><td>Tang /tmp ephemeral storage, copy file ve /tmp</td></tr>
+<tr><td>SNS FIFO ordering + dedup cho SMS</td><td>SNS FIFO topic</td></tr>
+<tr><td>SAM trong CodePipeline</td><td>Stage chay SAM CLI commands</td></tr>
+<tr><td>Lambda truy cap RDS private</td><td>Attach Lambda vao VPC private subnet + SG</td></tr>
+<tr><td>Shared persistent storage cho ECS Fargate</td><td>EFS qua efsVolumeConfiguration</td></tr>
+<tr><td>CloudFormation doi ten table</td><td>Tao moi + xoa cu (DeletionPolicy mac dinh Delete)</td></tr>
+<tr><td>Feature flags vung dong, polling local</td><td>AWS AppConfig + AppConfig Agent</td></tr>
+<tr><td>Tranh duplicate Lambda+SQS khi xu ly lau</td><td>Tang SQS Visibility Timeout</td></tr>
+<tr><td>Giam time-out Lambda khi file lon</td><td>Tang timeout (hoac memory neu CPU bottleneck)</td></tr>
+<tr><td>Chay nhieu Lambda theo thu tu</td><td>Step Functions state machine</td></tr>
+<tr><td>Lambda doc credential moi nhat</td><td>Secrets Manager fetch tai runtime</td></tr>
+<tr><td>SQS standard cost-effective</td><td>Long polling + Batch</td></tr>
+<tr><td>Mobile MFA</td><td>Cognito User Pool + bat MFA</td></tr>
+<tr><td>STS latency tu Asia</td><td>STS Regional endpoint</td></tr>
+<tr><td>SSL cert tu third-party het han</td><td>AWS Config + EventBridge + SNS</td></tr>
+<tr><td>Lambda + RDS surge connection</td><td>RDS Proxy</td></tr>
+<tr><td>Notify cho moi Lambda invocation</td><td>Async destinations (success + failure)</td></tr>
+<tr><td>Kinesis Firehose redact PII</td><td>Lambda transformation truoc khi ghi S3</td></tr>
+<tr><td>Beanstalk: deploy nhanh, zero downtime, all users</td><td>Immutable</td></tr>
+<tr><td>Test role permissions</td><td>aws sts assume-role</td></tr>
+<tr><td>Lambda warm + init time</td><td>Provisioned Concurrency + publish version</td></tr>
+<tr><td>HTTP API JWT khong tu code</td><td>HTTP API + JWT authorizer built-in</td></tr>
+<tr><td>DynamoDB sync sang Sheet</td><td>Streams + Lambda, NEW_IMAGE</td></tr>
+<tr><td>On-prem AD federation toi AWS Console</td><td>AWS Directory Service for Microsoft AD + trust</td></tr>
+<tr><td>Notify failure ProcessMessages Lambda</td><td>Async Failure Destination (SNS ErrorTopic)</td></tr>
+<tr><td>Provision test infra nhieu account + tests</td><td>CodePipeline + CloudFormation StackSets + CodeBuild</td></tr>
+<tr><td>CloudFront FLE -> DB ciphertext bug</td><td>Lambda decrypt voi KMS truoc khi ghi DB</td></tr>
+<tr><td>Cross-account CFN truy cap S3 code</td><td>Bucket policy principal: account IDs cu the</td></tr>
+<tr><td>Lambda truy cap S3 nhay cam, temp creds</td><td>Execution role + policy gioi han object</td></tr>
+<tr><td>Log on-prem -> CloudWatch tap trung</td><td>CloudWatch agent on-premises</td></tr>
+</table>
+</section>
+
+<section>
+<h2>10. Cach cac service ket noi voi nhau (cheat-sheet)</h2>
+<ul>
+<li><b>S3 -> Lambda</b>: S3 Event Notification (s3:ObjectCreated:*) hoac qua SNS/SQS/EventBridge.</li>
+<li><b>S3 -> SNS -> nhieu SQS</b>: fan-out voi subscription filter policy.</li>
+<li><b>API Gateway -> Lambda</b>: REST/HTTP API tich hop Lambda proxy; HTTP API ho tro JWT authorizer.</li>
+<li><b>Lambda -> RDS private</b>: Lambda attach VPC + private subnet + SG; them RDS Proxy de pool.</li>
+<li><b>Lambda async -> destination</b>: Success/Failure destination = SQS, SNS, EventBridge, Lambda.</li>
+<li><b>SQS -> Lambda</b>: event source mapping; Visibility timeout phai &gt;= Lambda timeout.</li>
+<li><b>SNS FIFO -> SMS/SQS/Lambda</b>: ordering + dedup, ho tro fan-out.</li>
+<li><b>DynamoDB Streams -> Lambda</b>: NEW_IMAGE/OLD_IMAGE/NEW_AND_OLD/KEYS_ONLY.</li>
+<li><b>Kinesis Firehose -> Lambda transform -> S3</b>: redact/transform truoc khi luu.</li>
+<li><b>CloudFront -> Origin (ALB/S3/Lambda function URL)</b>: forward header (Accept-Language, CloudFront-Viewer-Country) de origin tra content phu hop.</li>
+<li><b>Step Functions -> Lambda/ECS/SNS/SQS</b>: orchestration tuan tu/song song.</li>
+<li><b>CodePipeline -> CodeBuild -> CloudFormation/StackSets/SAM/CodeDeploy</b>: CI/CD chuan.</li>
+<li><b>Config -> EventBridge -> SNS</b>: phat hien compliance change + thong bao.</li>
+<li><b>Cognito User Pool -> API Gateway authorizer</b>: bao ve backend API bang JWT.</li>
+<li><b>Cognito Identity Pool -> STS -> S3/DynamoDB</b>: cap temporary AWS credentials cho client.</li>
+<li><b>KMS GenerateDataKey -> Client encrypt -> S3 PutObject</b>: client-side envelope encryption.</li>
+<li><b>Secrets Manager -> Lambda fetch runtime -> RDS</b>: credential luon moi sau rotation.</li>
+<li><b>AppConfig -> AppConfig Agent (sidecar) -> EC2/Lambda localhost</b>: feature flag polling.</li>
+</ul>
+</section>
+
+<footer>
+<p>Tai lieu nay duoc tong hop tu Practice Test 1 (cau 1 - 65) - AWS Certified Developer Associate (DVA-C02).</p>
+<p>Cap nhat cuoi: 2026-05-12. Vui long doi chieu voi AWS docs chinh thuc khi lam project that.</p>
+</footer>
+</main>
+</body></html>
