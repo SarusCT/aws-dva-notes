@@ -3,160 +3,361 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AWS DVA-C02 - Tai lieu on tap (Practice Test 1, cau 1-65)</title>
+<title>AWS DVA-C02 — Tài liệu ôn tập (Practice Test 1, câu 1–65)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0f172a;--panel:#111827;--ink:#e5e7eb;--muted:#94a3b8;--acc:#f59e0b;--acc2:#22d3ee;--good:#34d399;--bad:#f87171;--border:#334155}
+:root{
+  --paper:#fdf6e3;
+  --paper2:#f6ecc9;
+  --ink:#2b2b2b;
+  --muted:#6b5e4a;
+  --accent:#d97706;
+  --accent2:#0e7490;
+  --accent3:#7c3aed;
+  --good:#15803d;
+  --bad:#b91c1c;
+  --warn:#a16207;
+  --line:#e7d9b3;
+  --hl-yellow:#fff3a3;
+  --hl-pink:#ffd6e7;
+  --hl-blue:#cfeafd;
+  --hl-green:#d3f5d8;
+}
 *{box-sizing:border-box}
-body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#0b1220,#0f172a);color:var(--ink);line-height:1.65}
-header{padding:36px 24px;border-bottom:1px solid var(--border);background:linear-gradient(90deg,#1e293b,#0f172a)}
-header h1{margin:0;font-size:30px;color:#fbbf24}
-header p{margin:8px 0 0;color:var(--muted)}
-nav.toc{position:sticky;top:0;background:#0b1220;border-bottom:1px solid var(--border);padding:10px 16px;overflow-x:auto;white-space:nowrap;z-index:50}
-nav.toc a{display:inline-block;color:var(--acc2);margin-right:10px;text-decoration:none;padding:6px 10px;border-radius:6px;background:#11203a;font-size:13px}
-nav.toc a:hover{background:#1e3a5f}
-main{max-width:1100px;margin:0 auto;padding:24px}
-section{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:22px 26px;margin:24px 0;box-shadow:0 4px 18px rgba(0,0,0,.3)}
-section h2{color:var(--acc);margin-top:0;border-bottom:2px solid var(--border);padding-bottom:8px;font-size:23px}
-section h3{color:#fcd34d;margin-top:24px;font-size:17px}
-section h4{color:#a7f3d0;margin:14px 0 6px;font-size:15px}
-ul,ol{padding-left:22px}li{margin:4px 0}
-code{background:#0b1220;color:#7dd3fc;padding:2px 6px;border-radius:4px;font-family:JetBrains Mono,Consolas,monospace;font-size:13px}
-pre{background:#0b1220;border:1px solid var(--border);padding:12px;border-radius:8px;overflow-x:auto;font-size:13px;color:#cbd5e1}
-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:14px}
-th,td{border:1px solid var(--border);padding:8px 10px;text-align:left;vertical-align:top}
-th{background:#1e293b;color:#fbbf24}
-.tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:4px}
-.tag.good{background:rgba(52,211,153,.15);color:var(--good);border:1px solid var(--good)}
-.tag.bad{background:rgba(248,113,113,.15);color:var(--bad);border:1px solid var(--bad)}
-.tag.info{background:rgba(34,211,238,.15);color:var(--acc2);border:1px solid var(--acc2)}
-.callout{border-left:4px solid var(--acc);background:#1c1f2b;padding:12px 16px;margin:12px 0;border-radius:6px}
-.callout.warn{border-color:var(--bad)}
-.callout.tip{border-color:var(--good)}
-footer{padding:24px;text-align:center;color:var(--muted);font-size:13px;border-top:1px solid var(--border);margin-top:40px}
+html,body{margin:0;padding:0}
+body{
+  font-family:'Inter','Segoe UI',-apple-system,Roboto,Arial,sans-serif;
+  background:
+    radial-gradient(1200px 800px at 10% -10%, #fff8d6 0%, transparent 60%),
+    radial-gradient(1000px 700px at 110% 110%, #ffe9b8 0%, transparent 55%),
+    linear-gradient(180deg, var(--paper) 0%, var(--paper2) 100%);
+  color:var(--ink);
+  line-height:1.75;
+  font-size:16px;
+}
+header.hero{
+  padding:48px 28px 40px;
+  background:linear-gradient(135deg,#fef3c7 0%,#fde68a 50%,#fbbf24 100%);
+  border-bottom:3px double #b45309;
+  box-shadow:inset 0 -8px 16px rgba(180,83,9,.08);
+  position:relative;
+  overflow:hidden;
+}
+header.hero::before{
+  content:"";
+  position:absolute;inset:0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,.4) 0, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(217,119,6,.15) 0, transparent 40%);
+  pointer-events:none;
+}
+header.hero h1{
+  font-family:'Merriweather',Georgia,serif;
+  margin:0;
+  font-size:36px;
+  color:#7c2d12;
+  letter-spacing:-0.5px;
+  text-shadow:0 1px 0 rgba(255,255,255,.6);
+}
+header.hero .sub{
+  margin-top:10px;color:#78350f;font-size:16px;max-width:900px
+}
+header.hero .badge{
+  display:inline-block;padding:4px 12px;background:#7c2d12;color:#fef3c7;
+  border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.5px;margin-top:14px
+}
+nav.toc{
+  position:sticky;top:0;
+  background:rgba(253,246,227,.95);
+  backdrop-filter:blur(8px);
+  border-bottom:2px solid var(--line);
+  padding:12px 16px;
+  overflow-x:auto;white-space:nowrap;z-index:50;
+  box-shadow:0 4px 12px rgba(124,45,18,.06);
+}
+nav.toc a{
+  display:inline-block;color:#7c2d12;margin-right:8px;
+  text-decoration:none;padding:6px 14px;border-radius:8px;
+  background:#fef3c7;border:1px solid #fcd34d;
+  font-size:13px;font-weight:600;
+  transition:all .15s;
+}
+nav.toc a:hover{background:#fbbf24;color:#fff;transform:translateY(-1px)}
+main{max-width:1100px;margin:0 auto;padding:32px 24px 80px}
+section{
+  background:#fffdf5;
+  border:1px solid var(--line);
+  border-left:6px solid var(--accent);
+  border-radius:14px;
+  padding:28px 32px;
+  margin:28px 0;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.8) inset,
+    0 4px 18px rgba(180,83,9,.08),
+    0 1px 2px rgba(0,0,0,.04);
+}
+section h2{
+  font-family:'Merriweather',Georgia,serif;
+  color:#7c2d12;margin:0 0 6px;font-size:26px;
+  padding-bottom:10px;border-bottom:2px dashed #fcd34d;
+}
+section h2 .num{
+  display:inline-block;background:#7c2d12;color:#fef3c7;
+  border-radius:8px;padding:2px 10px;font-size:18px;margin-right:10px;
+  font-family:'JetBrains Mono',monospace;
+}
+section h3{
+  color:#0e7490;margin:24px 0 8px;font-size:19px;font-weight:700;
+  border-left:4px solid #06b6d4;padding-left:10px;background:linear-gradient(90deg,#ecfeff,transparent);
+}
+section h4{
+  color:#7c3aed;margin:16px 0 6px;font-size:16px;font-weight:700;
+}
+p{margin:8px 0}
+ul,ol{padding-left:22px;margin:8px 0}
+li{margin:5px 0}
+strong,b{color:#7c2d12;background:linear-gradient(180deg,transparent 60%,var(--hl-yellow) 60%);padding:0 2px}
+em{color:#7c3aed;font-style:normal;background:var(--hl-pink);padding:0 4px;border-radius:3px}
+code{
+  background:#fef3c7;color:#7c2d12;padding:2px 7px;border-radius:5px;
+  font-family:'JetBrains Mono',Consolas,monospace;font-size:13.5px;
+  border:1px solid #fcd34d;
+}
+pre{
+  background:#fffbeb;border:1px solid #fcd34d;border-left:4px solid var(--accent);
+  padding:14px 16px;border-radius:8px;overflow-x:auto;
+  font-size:13px;color:#451a03;line-height:1.6;
+  font-family:'JetBrains Mono',monospace;
+}
+table{
+  width:100%;border-collapse:collapse;margin:14px 0;font-size:14.5px;
+  background:#fffdf5;border-radius:8px;overflow:hidden;
+  box-shadow:0 1px 3px rgba(124,45,18,.08);
+}
+th,td{border:1px solid var(--line);padding:10px 14px;text-align:left;vertical-align:top}
+th{background:linear-gradient(180deg,#fde68a,#fcd34d);color:#7c2d12;font-weight:700}
+tr:nth-child(even) td{background:#fefce8}
+.callout{
+  margin:16px 0;padding:14px 18px;border-radius:10px;
+  border-left:5px solid;position:relative;
+  background:#fffbeb;
+}
+.callout::before{
+  content:attr(data-icon);position:absolute;left:-14px;top:10px;
+  background:#fff;border-radius:50%;width:28px;height:28px;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+  box-shadow:0 2px 4px rgba(0,0,0,.1);
+}
+.callout.tip{border-color:var(--good);background:linear-gradient(90deg,#dcfce7 0%,#fffdf5 60%)}
+.callout.tip strong{color:#14532d;background:#bbf7d0;padding:1px 5px;border-radius:4px}
+.callout.warn{border-color:var(--warn);background:linear-gradient(90deg,#fef3c7 0%,#fffdf5 60%)}
+.callout.danger{border-color:var(--bad);background:linear-gradient(90deg,#fecaca 0%,#fffdf5 60%)}
+.callout.info{border-color:var(--accent2);background:linear-gradient(90deg,#cffafe 0%,#fffdf5 60%)}
+.callout.note{border-color:var(--accent3);background:linear-gradient(90deg,#ede9fe 0%,#fffdf5 60%)}
+.tag{
+  display:inline-block;padding:3px 10px;border-radius:999px;
+  font-size:12px;font-weight:600;margin-right:6px;margin-bottom:4px;
+}
+.tag.good{background:#bbf7d0;color:#14532d;border:1px solid #4ade80}
+.tag.bad{background:#fecaca;color:#7f1d1d;border:1px solid #ef4444}
+.tag.info{background:#bae6fd;color:#075985;border:1px solid #38bdf8}
+.tag.warn{background:#fde68a;color:#78350f;border:1px solid #fbbf24}
+.tag.purple{background:#ddd6fe;color:#5b21b6;border:1px solid #a78bfa}
+.hl{background:var(--hl-yellow);padding:1px 4px;border-radius:3px;font-weight:600}
+.hl-pink{background:var(--hl-pink);padding:1px 4px;border-radius:3px}
+.hl-blue{background:var(--hl-blue);padding:1px 4px;border-radius:3px}
+.hl-green{background:var(--hl-green);padding:1px 4px;border-radius:3px}
+.kbd{
+  display:inline-block;padding:2px 8px;font-size:12px;font-family:monospace;
+  background:#fff;border:1px solid #d4a574;border-bottom-width:2px;
+  border-radius:4px;color:#7c2d12;
+}
+.flow{
+  display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+  background:#fef3c7;border:1px dashed #fcd34d;border-radius:8px;
+  padding:10px 14px;margin:10px 0;font-family:'JetBrains Mono',monospace;font-size:13px;
+}
+.flow .node{background:#fff;border:1px solid #fcd34d;padding:4px 10px;border-radius:6px;color:#7c2d12;font-weight:600}
+.flow .arrow{color:#d97706;font-weight:700}
+footer{
+  padding:30px 24px;text-align:center;color:var(--muted);
+  font-size:13px;border-top:2px dashed var(--line);margin-top:40px;
+  background:linear-gradient(180deg,transparent,#fef3c7);
+}
+footer .heart{color:#dc2626}
+@media (max-width:720px){
+  header.hero h1{font-size:26px}
+  section{padding:20px 18px}
+  main{padding:18px 12px 60px}
+}
 </style></head><body>
-<header>
-<h1>AWS Certified Developer Associate (DVA-C02)</h1>
-<p>Tai lieu on tap tong hop tu Practice Test 1 (cau 1 - 65). To chuc theo nhom service, lam ro ly thuyet va cach ket noi giua cac service.</p>
+<header class="hero">
+<h1>📘 AWS Certified Developer Associate (DVA-C02)</h1>
+<div class="sub">Tài liệu ôn tập tổng hợp từ <b>Practice Test 1 — câu 1 đến 65</b>. Tổ chức theo nhóm service, làm rõ <em>lý thuyết cốt lõi</em> và <em>cách các service kết nối với nhau</em>. Không nhắc lại đề và đáp án — chỉ tập trung vào kiến thức cần nắm.</div>
+<span class="badge">⚡ Practice Test 1 · 65 câu · v2 tiếng Việt có dấu</span>
 </header>
+
 <nav class="toc">
-<a href="#compute">Compute & Serverless</a>
-<a href="#storage">Storage</a>
-<a href="#database">Database</a>
-<a href="#network">Networking & Delivery</a>
-<a href="#security">Security & Identity</a>
-<a href="#messaging">Messaging & Integration</a>
-<a href="#cicd">CI/CD & IaC</a>
-<a href="#monitor">Monitoring & Observability</a>
+<a href="#compute">⚙️ Compute & Serverless</a>
+<a href="#storage">💾 Storage</a>
+<a href="#database">🗄️ Database</a>
+<a href="#network">🌐 Networking & Delivery</a>
+<a href="#security">🔐 Security & Identity</a>
+<a href="#messaging">📨 Messaging & Integration</a>
+<a href="#cicd">🚀 CI/CD & IaC</a>
+<a href="#monitor">📊 Monitoring</a>
+<a href="#patterns">🧩 Decision Matrix</a>
+<a href="#connect">🔗 Cheat-sheet kết nối</a>
 </nav>
+
 <main>
+
 <section id="compute">
-<h2>1. Compute & Serverless</h2>
-<h3>AWS Lambda - kien thuc cot loi</h3>
-<p>Lambda chay code khong can quan ly server. Moi invocation chay trong mot <b>execution environment</b> (sandbox MicroVM). Vong doi gom 2 pha:</p>
+<h2><span class="num">01</span>Compute & Serverless</h2>
+
+<h3>🟧 AWS Lambda — Kiến thức cốt lõi</h3>
+<p>Lambda chạy code <strong>không cần quản lý server</strong>. Mỗi lần invocation chạy trong một <em>execution environment</em> (sandbox MicroVM). Vòng đời gồm 2 pha quan trọng:</p>
 <ul>
-<li><b>Init phase</b> (allocation time): tai code, load layers, chay code o global scope, khoi tao SDK client, DB connection. Pha nay tinh phi nhung KHONG tinh trong duration cua handler khi co Provisioned Concurrency.</li>
-<li><b>Invoke phase</b>: chay handler. Cold start = lan dau khoi tao moi truong. Warm start = tai su dung moi truong san co.</li>
+<li><b>Init phase (allocation time)</b>: tải code, load layers, chạy code ở <span class="hl">global scope</span>, khởi tạo SDK client, mở DB connection. Khi có <em>Provisioned Concurrency</em>, pha này chạy <span class="hl-green">TRƯỚC</span> khi request đến → không tính vào duration của handler.</li>
+<li><b>Invoke phase</b>: chạy handler. <span class="hl-pink">Cold start</span> = lần đầu khởi tạo môi trường mới. <span class="hl-green">Warm start</span> = tái sử dụng môi trường sẵn có.</li>
 </ul>
-<h4>Cold start - cach giam</h4>
-<ul>
-<li><b>Provisioned Concurrency</b>: giu sang execution environment, chay init truoc, dam bao latency on dinh. Chi gan duoc cho <b>version cu the hoac alias</b>, KHONG gan cho <code>$LATEST</code>. Phai publish version moi gan duoc.</li>
-<li><b>Reserved Concurrency</b>: chi gioi han so concurrent execution (quota), khong giam cold start.</li>
-<li>Dat code init ra <b>global scope</b> (ngoai handler) de tai su dung connection, SDK client giua cac invocation tren cung container.</li>
-<li>Tang <b>memory</b> dong nghia tang CPU/network -> giam tong thoi gian thuc thi (vd: xu ly anh, thumbnail).</li>
-</ul>
-<h4>Lambda VPC access</h4>
-<ul>
-<li>Mac dinh Lambda khong nam trong VPC -> khong truy cap duoc resource private (RDS, EC2 private subnet).</li>
-<li>De truy cap: <b>attach Lambda vao VPC + private subnets + security group</b>. Lambda tao ENI trong subnet, dung Hyperplane ENI quan ly chia se.</li>
-<li>Khong dung NAT Gateway de Lambda noi voi resource trong VPC (NAT chi cho outbound Internet).</li>
-<li>Khong dung VPC Endpoint de Lambda noi EC2 (Endpoint danh cho AWS service nhu S3, DynamoDB).</li>
-</ul>
-<h4>Lambda + RDS / Aurora</h4>
-<ul>
-<li>Surge traffic + nhieu Lambda mo connection -> dung <b>RDS Proxy</b> de pool connection, tranh exhaust max_connections.</li>
-<li>Best practice: mo DB connection o <b>global scope</b> (ngoai handler) de reuse.</li>
-</ul>
-<h4>Lambda timeout vs SQS visibility timeout</h4>
-<ul>
-<li>Khi Lambda trigger bo SQS, neu xu ly lau hon <b>Visibility Timeout</b> cua queue -> message tro lai queue, bi xu ly trung.</li>
-<li>Quy tac: <code>SQS Visibility Timeout >= Lambda timeout + buffer</code>, va Visibility Timeout phai du dai cho ca call ngoai (vd 60s goi API ML).</li>
-<li>Tang Lambda memory/timeout KHONG sua duoc trung lap; phai chinh visibility timeout.</li>
-</ul>
-<h4>Lambda Destinations (async)</h4>
-<ul>
-<li>Khi Lambda invoke async (vd tu SNS), co the cau hinh <b>Success destination</b> va <b>Failure destination</b> = SQS / SNS / EventBridge / Lambda.</li>
-<li>Khac voi DLQ: DLQ chi nhan event THAT BAI sau khi retry het. Destinations co them success + ghi du metadata.</li>
-<li>De log moi invocation -> dung 2 destination (success + failure) cung tro ve 1 SQS.</li>
-</ul>
-<h4>Lambda alias + weighted routing (canary/staging)</h4>
-<ul>
-<li><b>Alias</b> tro toi 1 hoac 2 version voi % traffic (weighted). Cho phep canary deploy: vi du 90% prod version, 10% new version.</li>
-<li>SDK/API Gateway goi alias <code>staging</code> -> Lambda tu split traffic.</li>
-<li>Khong gan weight cho version truc tiep, chi alias moi co weight.</li>
-</ul>
-<h4>Lambda /tmp ephemeral storage</h4>
-<ul>
-<li>Moi execution environment co thu muc <code>/tmp</code>, mac dinh 512 MB, co the tang toi <b>10 GB</b>.</li>
-<li>Tot cho workload doc lap nhieu lan tu mot file lon (vd download video tu S3, xu ly nhieu pass). Doc local nhanh hon nhieu so voi S3 GetObject lap lai.</li>
-<li>Lambda khong gan EBS, khong gan ENA - chi co /tmp hoac mount EFS.</li>
-</ul>
-<h4>Lambda Insights vs X-Ray</h4>
-<ul>
-<li><b>CloudWatch Lambda Insights</b>: theo doi performance noi tai (CPU, memory, init duration, network). Bat bang cach: them <b>Lambda Insights Extension Layer</b> + gan policy <code>CloudWatchLambdaInsightsExecutionRolePolicy</code>.</li>
-<li><b>AWS X-Ray</b>: tracing distributed, do latency giua Lambda va downstream service (S3, DynamoDB...). Tren service map, click vao <b>edge/line</b> giua 2 node de xem latency bao gom network.</li>
-<li>Logs Insights chi query log; <code>@duration</code> la tong thoi gian Lambda, khong tach rieng downstream.</li>
-</ul>
-<h3>AWS Elastic Beanstalk - Deployment Policies</h3>
+
+<h4>❄️ Cold start — các cách giảm</h4>
 <table>
-<tr><th>Policy</th><th>Mo ta</th><th>Downtime</th><th>Toc do</th></tr>
-<tr><td><b>All-at-once</b></td><td>Deploy moi instance cung luc</td><td>CO downtime</td><td>Nhanh nhat</td></tr>
-<tr><td><b>Rolling</b></td><td>Deploy theo batch, giam capacity tam thoi</td><td>Khong, nhung giam performance</td><td>Trung binh</td></tr>
-<tr><td><b>Rolling with additional batch</b></td><td>Them batch moi truoc khi xoa cu</td><td>Khong</td><td>Cham hon</td></tr>
-<tr><td><b>Immutable</b></td><td>Tao ASG moi, switch CNAME khi OK</td><td>Khong, zero downtime</td><td>Cham nhat, an toan nhat</td></tr>
-<tr><td><b>Traffic splitting (Canary)</b></td><td>Chuyen 1 phan traffic sang version moi</td><td>Khong</td><td>Test truoc khi rollout</td></tr>
+<tr><th>Kỹ thuật</th><th>Hiệu quả</th><th>Lưu ý</th></tr>
+<tr><td><b>Provisioned Concurrency</b></td><td>Giữ sẵn N execution environment đã chạy init</td><td>Chỉ gán cho <span class="hl">version cụ thể hoặc alias</span>, <b>KHÔNG</b> gán được cho <code>$LATEST</code>. Phải publish version mới gán được.</td></tr>
+<tr><td><b>Reserved Concurrency</b></td><td>❌ Không giảm cold start</td><td>Chỉ giới hạn số concurrent execution (quota).</td></tr>
+<tr><td><b>Đặt init ra global scope</b></td><td>Tái sử dụng connection/client giữa các invoke</td><td>Đặt <code>db.connect()</code> ngoài handler.</td></tr>
+<tr><td><b>Tăng memory</b></td><td>CPU/network tăng theo tỉ lệ thuận</td><td>Cách nhanh nhất để giảm thời gian xử lý ảnh, video.</td></tr>
 </table>
-<h3>AWS CodeDeploy - Deployment Strategies</h3>
+
+<div class="callout tip" data-icon="💡"><b>Mẹo thi:</b> Câu hỏi nhắc "predictable invocation duration" + "init phải chạy ở allocation time" → chọn <span class="hl">Provisioned Concurrency</span> kết hợp <span class="hl">publish version</span>. Đừng chọn <code>$LATEST</code>!</div>
+
+<h4>🌉 Lambda VPC access</h4>
 <ul>
-<li><b>Canary</b>: shift 1 phan nho truoc (vd 10% trong 5 phut), neu OK thi roll 100% cung mot luc -> phu hop "thu nhom nho roi deploy dong loat".</li>
-<li><b>Linear</b>: shift theo % deu dan (vd 10% moi 10 phut).</li>
-<li><b>All-at-once</b>: deploy het cung luc.</li>
-<li><b>In-place</b> vs <b>Blue/Green</b>: in-place update truc tiep instance dang chay; blue/green tao moi truong moi va switch.</li>
+<li>Mặc định Lambda <span class="hl-pink">KHÔNG</span> nằm trong VPC → không truy cập được resource private (RDS, EC2 private subnet).</li>
+<li>Để truy cập: <b>attach Lambda vào VPC + private subnets + security group</b>. Lambda sẽ tạo Hyperplane ENI trong subnet.</li>
+<li><span class="tag bad">❌ Sai</span> Dùng NAT Gateway để Lambda nối với resource trong VPC (NAT chỉ cho outbound Internet).</li>
+<li><span class="tag bad">❌ Sai</span> Dùng VPC Endpoint để Lambda nối với EC2 (Endpoint dành cho AWS service như S3, DynamoDB).</li>
+<li><span class="tag bad">❌ Sai</span> Dùng VPN cho Lambda ↔ EC2 trong cùng VPC.</li>
 </ul>
-<h3>Amazon ECS Fargate</h3>
+
+<h4>🔌 Lambda + RDS / Aurora</h4>
 <ul>
-<li>Fargate khong quan ly EC2 host. Container chay tren ha tang AWS managed.</li>
-<li><b>Shared persistent storage</b> giua nhieu task -> dung <b>Amazon EFS</b> qua <code>efsVolumeConfiguration</code> va <code>mountPoints</code> trong task definition.</li>
-<li><b>EBS</b> gan vao EC2 instance, khong gan tu nhien cho Fargate task (co support EBS volume cho task tu 2024 nhung khong share duoc).</li>
-<li><b>DockerVolumeConfiguration</b> chi ho tro EC2 launch type, KHONG ho tro Fargate.</li>
-<li><b>ECS Task IAM Role</b> (bat ECS_ENABLE_TASK_IAM_ROLE=true): cap quyen rieng cho moi task, dap ung least privilege; tach biet voi <b>EC2 instance profile role</b> (cho ECS agent).</li>
+<li>Surge traffic + nhiều Lambda mở connection → dùng <span class="hl">RDS Proxy</span> để pool connection, tránh vượt <code>max_connections</code>.</li>
+<li><b>Best practice</b>: mở DB connection ở <em>global scope</em> (ngoài handler) để reuse giữa các warm invocation. Đây là pattern cải thiện latency lớn nhất khi Lambda gọi DB thường xuyên.</li>
+</ul>
+
+<h4>⏱️ Lambda timeout vs SQS Visibility Timeout</h4>
+<div class="callout warn" data-icon="⚠️">
+Khi Lambda được trigger bởi SQS, nếu xử lý lâu hơn <b>Visibility Timeout</b> của queue → message sẽ <span class="hl-pink">tái xuất hiện</span> và bị xử lý <b>trùng lặp</b>.
+<br><b>Quy tắc vàng:</b> <code>SQS Visibility Timeout ≥ Lambda timeout + buffer</code>, và phải đủ dài để cover cả call ngoài (vd 60s gọi API ML).
+<br>Tăng Lambda timeout/memory <span class="hl-pink">KHÔNG</span> sửa được trùng lặp — phải tăng <b>Visibility Timeout</b>!
+</div>
+
+<h4>🎯 Lambda Destinations (async invocation)</h4>
+<p>Khi Lambda invoke <em>async</em> (vd từ SNS, S3, EventBridge), có thể cấu hình:</p>
+<ul>
+<li><span class="tag good">Success destination</span>: gửi kết quả khi thành công</li>
+<li><span class="tag bad">Failure destination</span>: gửi event khi lỗi (sau retry)</li>
+</ul>
+<p>Target hỗ trợ: <b>SQS / SNS / EventBridge / Lambda</b>.</p>
+<div class="callout info" data-icon="ℹ️">
+<b>Destinations khác DLQ:</b>
+<ul style="margin:6px 0">
+<li><span class="hl">Destinations</span>: cả success + failure, có metadata đầy đủ.</li>
+<li><span class="hl-pink">DLQ</span>: chỉ failure sau khi retry hết.</li>
+</ul>
+Muốn log <b>MỌI invocation</b> → dùng cả 2 destination (success + failure) cùng trỏ vào 1 SQS.
+</div>
+
+<h4>🎚️ Lambda Alias + Weighted Routing (canary / staging)</h4>
+<ul>
+<li><b>Alias</b> trỏ tới 1 hoặc 2 version với <span class="hl">% traffic</span>. Cho phép canary: ví dụ 90% prod, 10% new version.</li>
+<li>SDK / API Gateway gọi alias <code>staging</code> → Lambda tự split traffic.</li>
+<li><span class="tag bad">❌</span> Không gán weight cho version trực tiếp — chỉ <b>alias</b> mới có weight.</li>
+</ul>
+
+<h4>💾 Lambda /tmp Ephemeral Storage</h4>
+<ul>
+<li>Mỗi execution environment có thư mục <code>/tmp</code>, mặc định <b>512 MB</b>, tăng tối đa <span class="hl">10 GB</span>.</li>
+<li>Tốt cho workload <em>đọc đi đọc lại</em> một file lớn (vd: download video từ S3, xử lý nhiều pass) → đọc local nhanh hơn rất nhiều so với gọi S3 GetObject lặp lại.</li>
+<li><span class="tag bad">❌</span> Lambda KHÔNG gắn EBS, KHÔNG gắn ENA — chỉ có <code>/tmp</code> hoặc mount EFS.</li>
+</ul>
+
+<h4>📈 Lambda Insights vs X-Ray</h4>
+<table>
+<tr><th>Công cụ</th><th>Dùng để</th><th>Cách bật</th></tr>
+<tr><td><b>CloudWatch Lambda Insights</b></td><td>Performance nội tại: CPU, memory, init duration, network</td><td>Thêm <span class="hl">Lambda Insights Extension Layer</span> + gắn policy <code>CloudWatchLambdaInsightsExecutionRolePolicy</code></td></tr>
+<tr><td><b>AWS X-Ray</b></td><td>Distributed tracing, latency giữa Lambda ↔ downstream service (S3, DynamoDB...)</td><td>Bật Active Tracing trên function. Trên service map, click <b>EDGE/LINE</b> giữa 2 node để xem latency bao gồm network.</td></tr>
+<tr><td><b>CloudWatch Logs Insights</b></td><td>Query log, đo <code>@duration</code> = tổng thời gian Lambda</td><td>Không tách rời downstream — chỉ tổng.</td></tr>
+</table>
+<div class="callout tip" data-icon="🎯"><b>Mẹo:</b> Đo latency giữa Lambda ↔ S3 → chọn X-Ray + click <span class="hl">EDGE</span> (đường nối). Click NODE chỉ cho latency của S3 service, không bao gồm network.</div>
+
+<h3>🟦 AWS Elastic Beanstalk — Deployment Policies</h3>
+<table>
+<tr><th>Policy</th><th>Mô tả</th><th>Downtime</th><th>Khi nào dùng</th></tr>
+<tr><td><b>All-at-once</b></td><td>Deploy mọi instance cùng lúc</td><td><span class="tag bad">CÓ downtime</span></td><td>Dev/test, deploy nhanh</td></tr>
+<tr><td><b>Rolling</b></td><td>Deploy theo batch, giảm capacity tạm thời</td><td><span class="tag warn">Giảm performance</span></td><td>Khi chấp nhận giảm capacity</td></tr>
+<tr><td><b>Rolling with additional batch</b></td><td>Thêm batch mới trước khi xóa cũ</td><td><span class="tag good">Không</span></td><td>Giữ nguyên capacity</td></tr>
+<tr><td><b>Immutable</b> ⭐</td><td>Tạo ASG mới, switch CNAME khi OK</td><td><span class="tag good">Zero downtime</span></td><td>Khi cần <span class="hl">maximize availability + minimize impact</span> + deploy cho ALL users nhanh</td></tr>
+<tr><td><b>Traffic Splitting (Canary)</b></td><td>Chuyển 1 phần traffic sang version mới</td><td><span class="tag good">Không</span></td><td>Test trước khi rollout</td></tr>
+</table>
+
+<h3>🟪 AWS CodeDeploy — Deployment Strategies</h3>
+<ul>
+<li><b>Canary</b>: shift 1 phần nhỏ trước (vd 10% trong 5 phút), nếu OK → roll 100% <span class="hl">cùng một lúc</span> → phù hợp "thử nhóm nhỏ rồi deploy đồng loạt cho all users".</li>
+<li><b>Linear</b>: shift theo % đều đặn (vd 10% mỗi 10 phút).</li>
+<li><b>All-at-once</b>: deploy hết cùng lúc.</li>
+<li><b>In-place vs Blue/Green</b>: in-place update trực tiếp instance đang chạy; blue/green tạo môi trường mới và switch.</li>
+</ul>
+<div class="callout danger" data-icon="🚫"><b>Lỗi IAM_ROLE_PERMISSIONS</b> trong CodeDeploy → gắn policy <code>AWSCodeDeployRole</code> (cho EC2/On-Prem) hoặc <code>AWSCodeDeployRoleForECS</code> (cho ECS). KHÔNG nhầm với agent issue!</div>
+
+<h3>🟫 Amazon ECS Fargate</h3>
+<ul>
+<li>Fargate không quản lý EC2 host. Container chạy trên hạ tầng AWS managed.</li>
+<li><b>Shared persistent storage</b> giữa nhiều task → dùng <span class="hl">Amazon EFS</span> qua <code>efsVolumeConfiguration</code> + <code>mountPoints</code> trong task definition.</li>
+<li><span class="tag bad">❌</span> EBS gắn vào EC2 instance, không gắn tự nhiên cho Fargate task.</li>
+<li><span class="tag bad">❌</span> <code>DockerVolumeConfiguration</code> chỉ hỗ trợ EC2 launch type, KHÔNG hỗ trợ Fargate.</li>
+<li><b>ECS Task IAM Role</b>: bật <code>ECS_ENABLE_TASK_IAM_ROLE=true</code> → cấp quyền riêng cho từng task → least privilege. Khác với <em>EC2 instance profile role</em> (cho ECS agent).</li>
 </ul>
 </section>
 
 <section id="storage">
-<h2>2. Storage - S3, EBS, EFS, ElastiCache</h2>
-<h3>Amazon S3 - kien thuc cot loi</h3>
-<h4>S3 Versioning + Lifecycle</h4>
+<h2><span class="num">02</span>Storage — S3, EBS, EFS, ElastiCache</h2>
+
+<h3>🟧 Amazon S3 — Kiến thức cốt lõi</h3>
+
+<h4>📁 S3 Versioning + Lifecycle</h4>
 <ul>
-<li>Khi bat <b>Versioning</b>, moi PutObject tao mot version moi. Object cu thanh <b>noncurrent version</b>.</li>
-<li>De gioi han so version giu lai (vd current + 1 truoc), dung <b>S3 Lifecycle rule</b>: <code>NoncurrentVersionExpiration</code> voi <code>NewerNoncurrentVersions</code>.</li>
-<li><b>Bucket policy</b> chi quan ly access, khong quan ly retention.</li>
-<li><b>Object Lock</b> = WORM (compliance), khong dung de gioi han version.</li>
+<li>Khi bật <b>Versioning</b>, mỗi PutObject tạo một version mới. Object cũ thành <em>noncurrent version</em>.</li>
+<li>Để giới hạn số version giữ lại (vd: current + 1 trước), dùng <span class="hl">S3 Lifecycle Rule</span> với action <code>NoncurrentVersionExpiration</code> + tham số <code>NewerNoncurrentVersions</code>.</li>
+<li><span class="tag bad">❌</span> <b>Bucket policy</b> chỉ quản lý access, KHÔNG quản lý retention.</li>
+<li><span class="tag bad">❌</span> <b>Object Lock</b> = WORM (compliance), không dùng để giới hạn version count.</li>
+<li><span class="tag bad">❌</span> Suspend Versioning + sửa code app → không thực tế.</li>
 </ul>
-<h4>S3 Encryption - phan biet ro</h4>
+
+<h4>🔐 S3 Encryption — Phân biệt rõ</h4>
 <table>
-<tr><th>Loai</th><th>Ai quan ly key</th><th>Dac diem</th></tr>
-<tr><td><b>SSE-S3</b></td><td>S3 tu quan ly (AES-256)</td><td>Don gian nhat, khong audit duoc</td></tr>
-<tr><td><b>SSE-KMS</b></td><td>AWS KMS (CMK)</td><td>Audit qua CloudTrail, kiem soat quyen kms:Decrypt</td></tr>
-<tr><td><b>SSE-C</b></td><td>Customer cung cap key</td><td>S3 khong luu key</td></tr>
-<tr><td><b>DSSE-KMS</b></td><td>2 lop ma hoa, KMS</td><td>Workload compliance cao</td></tr>
-<tr><td><b>Client-side</b></td><td>Client ma hoa truoc khi upload</td><td>Dung <code>GenerateDataKey</code> + envelope encryption</td></tr>
+<tr><th>Loại</th><th>Ai quản lý key</th><th>Đặc điểm</th><th>Use case</th></tr>
+<tr><td><b>SSE-S3</b></td><td>S3 tự quản lý (AES-256)</td><td>Đơn giản nhất, không audit qua CloudTrail</td><td>Yêu cầu "chặn third-party" cơ bản</td></tr>
+<tr><td><b>SSE-KMS</b></td><td>AWS KMS (Customer Master Key)</td><td>Audit qua CloudTrail, kiểm soát quyền <code>kms:Decrypt</code></td><td>Cần kiểm soát chi tiết, compliance</td></tr>
+<tr><td><b>SSE-C</b></td><td>Customer cung cấp key</td><td>S3 không lưu key, key đi kèm mỗi request</td><td>Tự quản lý key hoàn toàn</td></tr>
+<tr><td><b>DSSE-KMS</b></td><td>2 lớp mã hóa, KMS</td><td>Compliance cực cao</td><td>Workload nhạy cảm đặc biệt</td></tr>
+<tr><td><b>Client-side</b></td><td>Client mã hóa trước khi upload</td><td>Dùng <code>GenerateDataKey</code> + envelope encryption</td><td>"Encrypt BEFORE upload"</td></tr>
 </table>
-<div class="callout tip"><b>Mau cau hoi:</b> "Encrypt BEFORE upload" -> client-side encryption voi <code>kms:GenerateDataKey</code>. Lambda goi GenerateDataKey nhan plaintext data key + CiphertextBlob, ma hoa file bang plaintext key, store CiphertextBlob trong metadata. "Encrypt AT REST" -> SSE-S3 / SSE-KMS.</div>
-<h4>In-transit encryption (S3)</h4>
-<ul>
-<li>HTTPS bao mat kenh truyen. De ENFORCE HTTPS cho bucket: dung bucket policy voi <code>"aws:SecureTransport": "false"</code> -> Deny.</li>
-<li>Cai cert tren EC2, dung VPC Endpoint... KHONG enforce HTTPS o phia S3.</li>
+
+<div class="callout note" data-icon="🔑">
+<b>Mẫu câu hỏi phân biệt:</b>
+<ul style="margin:6px 0">
+<li><span class="hl">"Encrypt BEFORE upload"</span> → <b>Client-side</b> với <code>kms:GenerateDataKey</code>. Flow: Lambda gọi <code>GenerateDataKey</code> → nhận <em>plaintext key</em> + <em>CiphertextBlob</em> → mã hóa file bằng plaintext key → upload kèm CiphertextBlob trong metadata.</li>
+<li><span class="hl-green">"Encrypt AT REST"</span> → <b>SSE-S3 / SSE-KMS</b> (đơn giản, không cần đụng code).</li>
+<li><span class="hl-pink">"Chặn third-party basic"</span> → <b>SSE-S3</b> là đủ (không cần SSE-KMS phức tạp).</li>
 </ul>
+</div>
+
+<h4>🔒 In-transit Encryption (S3)</h4>
+<p>HTTPS bảo mật kênh truyền. Để <b>ENFORCE</b> HTTPS cho bucket: dùng bucket policy với điều kiện <code>aws:SecureTransport = false</code> để Deny request HTTP.</p>
 <pre>{
   "Effect": "Deny",
   "Principal": "*",
@@ -164,372 +365,576 @@ footer{padding:24px;text-align:center;color:var(--muted);font-size:13px;border-t
   "Resource": ["arn:aws:s3:::bucket","arn:aws:s3:::bucket/*"],
   "Condition": {"Bool": {"aws:SecureTransport": "false"}}
 }</pre>
-<h4>S3 Object Lambda</h4>
 <ul>
-<li>Cho phep <b>bien doi data on-the-fly</b> khi client goi GetObject thong qua <b>S3 Object Lambda Access Point</b>.</li>
-<li>Use case: redact PII, resize anh, convert format ma khong can luu nhieu ban copy hoac refactor consumer.</li>
-<li>Khac biet: ma hoa (SSE) KHONG che PII (decrypt xong van thay); muon che PII thi can transformation.</li>
+<li><span class="tag bad">❌</span> Cài cert trên EC2, dùng VPC Endpoint, SSE-KMS... đều KHÔNG enforce HTTPS phía S3.</li>
 </ul>
-<h4>S3 storage classes - lien quan latency</h4>
+
+<h4>🪄 S3 Object Lambda</h4>
 <ul>
-<li><b>S3 Standard</b>: truy cap tuc thi, latency thap, gia cao hon.</li>
-<li><b>S3 Glacier / Deep Archive</b>: can <b>restore</b> tu vai phut den vai gio -> KHONG dap ung yeu cau "trong 5 phut".</li>
-<li><b>S3 Transfer Acceleration</b>: tang toc upload/download qua CloudFront edge, KHONG phai cho content delivery + language logic.</li>
+<li>Cho phép <span class="hl">biến đổi data on-the-fly</span> khi client gọi <code>GetObject</code> thông qua <em>S3 Object Lambda Access Point</em>.</li>
+<li><b>Use case điển hình</b>: redact PII, resize ảnh, convert format — KHÔNG cần lưu nhiều bản copy hay refactor consumer.</li>
+<li>Khác biệt quan trọng: <span class="hl-pink">Mã hóa (SSE) KHÔNG che PII</span> — decrypt xong vẫn thấy. Muốn che PII phải dùng transformation thật sự.</li>
 </ul>
-<h4>S3 message pattern voi SQS</h4>
+
+<h4>📦 S3 Storage Classes — Liên quan latency</h4>
+<table>
+<tr><th>Class</th><th>Truy cập</th><th>Phù hợp</th></tr>
+<tr><td><b>S3 Standard</b></td><td><span class="tag good">Tức thì</span></td><td>Truy cập ≤ 5 phút sau upload</td></tr>
+<tr><td><b>Glacier / Deep Archive</b></td><td><span class="tag bad">Restore vài phút → vài giờ</span></td><td>Archive, KHÔNG đáp ứng yêu cầu nhanh</td></tr>
+<tr><td><b>Transfer Acceleration</b></td><td>Tăng tốc upload/download qua edge</td><td>Không phải content delivery + language logic</td></tr>
+</table>
+
+<h4>🪣 S3 + SQS Pattern</h4>
+<div class="callout info" data-icon="🧠">
+SQS message <span class="hl-pink">tối đa 256 KB</span>. Với file 10 MB:
+<div class="flow">
+<span class="node">User upload</span><span class="arrow">→</span>
+<span class="node">S3 (Standard)</span><span class="arrow">→</span>
+<span class="node">Gửi S3 location (key/URL) vào SQS</span><span class="arrow">→</span>
+<span class="node">Consumer xử lý</span>
+</div>
+Không bao giờ nhúng nội dung file lớn vào message SQS.
+</div>
+
+<h3>🟦 Amazon EFS</h3>
 <ul>
-<li>SQS message gioi han 256 KB. Voi file 10 MB: luu file vao <b>S3</b>, gui <b>S3 location (key/URL)</b> vao SQS de consumer xu ly bat dong bo.</li>
+<li>File system NFS managed, share giữa nhiều EC2 / ECS task.</li>
+<li>Hỗ trợ <b>Fargate</b> mount qua task definition (<code>efsVolumeConfiguration</code>).</li>
+<li>Latency cao hơn nhiều so với /tmp local — phù hợp shared persistent storage, không cho I/O cực nặng.</li>
 </ul>
-<h3>Amazon EFS</h3>
+
+<h3>🟫 Amazon EBS</h3>
 <ul>
-<li>File system NFS managed, hieu nang co the scale, share giua nhieu EC2/ECS task.</li>
-<li>Ho tro <b>Fargate</b> mount qua task definition (<code>efsVolumeConfiguration</code>).</li>
+<li>Block storage gắn vào 1 EC2 instance (gp3 default).</li>
+<li>Không share trong cùng Region (trừ io2 Block Express multi-attach giới hạn).</li>
+<li>Không dùng cho Lambda hoặc Fargate shared storage.</li>
 </ul>
-<h3>Amazon EBS</h3>
+
+<h3>🟨 Amazon ElastiCache</h3>
 <ul>
-<li>Block storage gan vao 1 EC2 instance (gp3 default).</li>
-<li>Khong share trong cung Region (tru io2 Block Express multi-attach gioi han).</li>
-<li>Khong dung cho Lambda hoac Fargate share storage.</li>
-</ul>
-<h3>Amazon ElastiCache</h3>
-<ul>
-<li>In-memory cache, latency microsecond.</li>
-<li><b>Memcached</b>: don gian, multi-thread, khong persistence, dung cho session cache.</li>
+<li>In-memory cache, <span class="hl">latency microsecond</span> — nhanh nhất trong nhóm cache.</li>
+<li><b>Memcached</b>: đơn giản, multi-thread, không persistence → phù hợp session cache.</li>
 <li><b>Redis</b>: persistence, pub/sub, replication, cluster mode.</li>
-<li><b>Use case dien hinh</b>: tach session state khoi EC2 web server (stateless tier) -> dap ung scale-out + giam tai memory. Lua chon "lowest-latency session store" -> ElastiCache.</li>
-<li>So sanh: DynamoDB, RDS deu cao latency hon ElastiCache.</li>
 </ul>
+<div class="callout tip" data-icon="🏆">
+<b>"Lowest-latency session store"</b> → luôn chọn <span class="hl">ElastiCache</span>.
+<br>So sánh: DynamoDB / RDS đều có latency ms (chậm hơn), shared filesystem chậm hơn nữa.
+<br><b>Pattern stateless web tier</b>: web server EC2 (Auto Scaling) + session lưu ElastiCache + data lưu RDS.
+</div>
 </section>
 
 <section id="database">
-<h2>3. Database - DynamoDB, RDS/Aurora</h2>
-<h3>Amazon DynamoDB</h3>
-<h4>Query vs Scan vs GetItem vs BatchGetItem</h4>
+<h2><span class="num">03</span>Database — DynamoDB, RDS / Aurora</h2>
+
+<h3>🟧 Amazon DynamoDB</h3>
+
+<h4>🔍 Query vs Scan vs GetItem vs BatchGetItem</h4>
 <table>
-<tr><th>Operation</th><th>Khi dung</th><th>Hieu nang</th></tr>
-<tr><td><b>GetItem</b></td><td>Biet chinh xac partition key (+ sort key)</td><td>1 item, RCU thap nhat</td></tr>
-<tr><td><b>BatchGetItem</b></td><td>Nhieu item, biet ro full key cua tung item</td><td>Hieu qua khi co list keys cu the</td></tr>
-<tr><td><b>Query</b></td><td>Tim theo partition key (co the sort key range), tren table hoac GSI/LSI</td><td>Toi uu RCU, chi doc item phu hop</td></tr>
-<tr><td><b>Scan</b></td><td>Doc TOAN BO table/index</td><td>Ton RCU nhat, nen tranh</td></tr>
+<tr><th>Operation</th><th>Khi dùng</th><th>Read Capacity</th></tr>
+<tr><td><b>GetItem</b></td><td>Biết chính xác partition key (+ sort key)</td><td><span class="tag good">Thấp nhất — 1 item</span></td></tr>
+<tr><td><b>BatchGetItem</b></td><td>Nhiều item, biết rõ full key của từng item</td><td><span class="tag good">Hiệu quả khi có list keys cụ thể</span></td></tr>
+<tr><td><b>Query</b> ⭐</td><td>Tìm theo partition key (có thể sort key range), trên table hoặc <b>GSI/LSI</b></td><td><span class="tag good">Tối ưu RCU, chỉ đọc item phù hợp</span></td></tr>
+<tr><td><b>Scan</b></td><td>Đọc <span class="hl-pink">TOÀN BỘ</span> table/index</td><td><span class="tag bad">Tốn RCU nhất — TRÁNH</span></td></tr>
 </table>
-<div class="callout tip"><b>Tip:</b> Khi co GSI voi partition key la field can loc, luon dung <b>Query tren GSI</b> de tiet kiem RCU. Scan + FilterExpression van phai doc het roi moi loc -> dat.</div>
-<h4>DynamoDB Streams</h4>
+
+<div class="callout tip" data-icon="💎">
+<b>Pattern điển hình:</b> Có GSI với partition key là field cần lọc (vd <code>accountId</code>) → luôn dùng <span class="hl">Query trên GSI</span> để tiết kiệm RCU.
+<br>Scan + FilterExpression vẫn phải đọc hết rồi mới lọc → đắt và chậm.
+</div>
+
+<h4>🌊 DynamoDB Streams</h4>
 <ul>
-<li>Phat su kien khi co thay doi tren item: <code>INSERT</code>, <code>MODIFY</code>, <code>REMOVE</code>.</li>
-<li>Stream view type: <b>KEYS_ONLY</b>, <b>NEW_IMAGE</b>, <b>OLD_IMAGE</b>, <b>NEW_AND_OLD_IMAGES</b>.</li>
-<li>Khi can du lieu sau khi update (vd dong bo sang Google Sheet, ElasticSearch) -> chon <b>NEW_IMAGE</b>.</li>
-<li>Trigger Lambda consume stream de xu ly downstream.</li>
+<li>Phát sự kiện khi có thay đổi trên item: <code>INSERT</code>, <code>MODIFY</code>, <code>REMOVE</code>.</li>
+<li>Stream view type:</li>
 </ul>
-<h4>DAX (DynamoDB Accelerator)</h4>
+<table>
+<tr><th>View Type</th><th>Nội dung</th><th>Use case</th></tr>
+<tr><td><b>KEYS_ONLY</b></td><td>Chỉ key</td><td>Khi chỉ cần biết item nào thay đổi</td></tr>
+<tr><td><b>NEW_IMAGE</b> ⭐</td><td>Item SAU thay đổi</td><td>Đồng bộ sang Sheet, ES, cache</td></tr>
+<tr><td><b>OLD_IMAGE</b></td><td>Item TRƯỚC thay đổi</td><td>Audit, undo</td></tr>
+<tr><td><b>NEW_AND_OLD_IMAGES</b></td><td>Cả 2</td><td>Diff, audit chi tiết</td></tr>
+</table>
+<p>Trigger Lambda consume stream để xử lý downstream (vd update spreadsheet realtime).</p>
+
+<h4>⚡ DAX (DynamoDB Accelerator)</h4>
 <ul>
-<li>In-memory cache cho DynamoDB, giam latency doc tu ms xuong microsecond.</li>
-<li>Chi tang toc doc, khong phat stream/event. Khong thay the duoc Streams.</li>
+<li>In-memory cache cho DynamoDB → giảm latency đọc từ ms xuống microsecond.</li>
+<li><span class="tag bad">❌</span> Chỉ tăng tốc đọc, <b>KHÔNG phát stream/event</b> → không thay thế Streams được.</li>
 </ul>
-<h3>Amazon RDS / Aurora</h3>
+
+<h3>🟦 Amazon RDS / Aurora</h3>
 <ul>
-<li>Aurora MySQL/PostgreSQL: managed, scale storage tu dong, replica nhanh.</li>
-<li>Khi co nhieu Lambda concurrent connect -> dung <b>RDS Proxy</b> (connection pooling, su dung IAM auth, lay credential tu Secrets Manager).</li>
-<li>Connection bao mat: dung Secrets Manager rotation; Lambda fetch credential <b>tai runtime</b> (khong dung env var de tu cap nhat).</li>
-<li>Encryption at-rest cua RDS khong tu giai ma ung dung level (vd CloudFront Field-Level Encryption).</li>
+<li>Aurora MySQL/PostgreSQL: managed, scale storage tự động, replica nhanh.</li>
+<li>Khi có nhiều Lambda concurrent connect → dùng <span class="hl">RDS Proxy</span> (connection pooling, IAM auth, lấy credential từ Secrets Manager).</li>
+<li>Connection bảo mật: dùng Secrets Manager rotation; Lambda <b>fetch credential tại runtime</b> (KHÔNG dùng env var vì env var bị đóng băng lúc init).</li>
+<li>Encryption at-rest của RDS không tự giải mã dữ liệu mức ứng dụng (vd ciphertext từ CloudFront Field-Level Encryption).</li>
 </ul>
 </section>
 
 <section id="network">
-<h2>4. Networking & Content Delivery</h2>
-<h3>Application Load Balancer (ALB)</h3>
+<h2><span class="num">04</span>Networking & Content Delivery</h2>
+
+<h3>🟧 Application Load Balancer (ALB)</h3>
 <table>
-<tr><th>Header</th><th>Y nghia</th></tr>
-<tr><td><b>X-Forwarded-For</b></td><td>Client IP that su (chuoi IP qua cac proxy)</td></tr>
-<tr><td>X-Forwarded-Proto</td><td>Protocol goc cua client (http/https)</td></tr>
-<tr><td>X-Forwarded-Host</td><td>Host header goc</td></tr>
-<tr><td>X-Forwarded-Port</td><td>Port goc</td></tr>
+<tr><th>Header</th><th>Ý nghĩa</th><th>Dùng để</th></tr>
+<tr><td><b>X-Forwarded-For</b> ⭐</td><td>Client IP thật (chuỗi IP qua các proxy)</td><td><span class="hl">Phân tích pattern theo IP client</span></td></tr>
+<tr><td>X-Forwarded-Proto</td><td>Protocol gốc (http/https)</td><td>Redirect HTTPS</td></tr>
+<tr><td>X-Forwarded-Host</td><td>Host header gốc</td><td>Multi-tenant routing</td></tr>
+<tr><td>X-Forwarded-Port</td><td>Port gốc</td><td>Logging</td></tr>
 </table>
-<p>Phan tich pattern theo IP client -> dung <b>X-Forwarded-For</b>.</p>
-<h3>Amazon CloudFront</h3>
+
+<h3>🟦 Amazon CloudFront</h3>
 <ul>
-<li>CDN toan cau, cache tai edge, giam latency.</li>
-<li><b>Field-Level Encryption (FLE)</b>: ma hoa cac field nhay cam tai edge bang RSA public key (tu KMS), origin/ung dung phai <b>decrypt bang private key</b> truoc khi luu DB. Neu khong decrypt -> DB se nhan ciphertext (loi thuong gap).</li>
-<li>Headers dac biet:
-  <ul>
-    <li><b>CloudFront-Viewer-Country</b>: ma quoc gia cua user.</li>
-    <li><b>Accept-Language</b>: ngon ngu trinh duyet user.</li>
-  </ul>
-  Forward 2 header nay len origin de phuc vu content theo dia ly + ngon ngu.</li>
-<li>Lambda@Edge: chay logic JS/Python tai edge, dung cho FLE custom, A/B testing, header manipulation.</li>
+<li>CDN toàn cầu, cache tại edge, giảm latency.</li>
+<li><b>Field-Level Encryption (FLE)</b>: mã hóa các field nhạy cảm tại edge bằng <span class="hl">RSA public key</span> (từ KMS). Origin/ứng dụng <span class="hl-pink">PHẢI DECRYPT bằng private key</span> trước khi lưu DB.</li>
 </ul>
-<h3>Amazon API Gateway</h3>
+
+<div class="callout danger" data-icon="🐛">
+<b>Bug điển hình:</b> Bật CloudFront FLE → DB lưu <span class="hl-pink">ciphertext</span> thay vì plaintext.
+<br><b>Nguyên nhân:</b> Lambda/app ở origin không decrypt.
+<br><b>Fix:</b> Thêm Lambda function dùng <span class="hl">KMS key để decrypt</span> các data field <em>TRƯỚC KHI</em> ghi vào DB.
+<br>SSE-KMS hay HTTPS đều không giải quyết được — chúng chỉ mã hóa kênh truyền / tầng lưu trữ, không decrypt ciphertext của FLE.
+</div>
+
+<h4>🌍 Headers đặc biệt cho content theo địa lý + ngôn ngữ</h4>
+<ul>
+<li><b>CloudFront-Viewer-Country</b>: mã quốc gia của user (tự động).</li>
+<li><b>Accept-Language</b>: ngôn ngữ trình duyệt user.</li>
+</ul>
+<div class="flow">
+<span class="node">User</span><span class="arrow">→</span>
+<span class="node">CloudFront (edge)</span><span class="arrow">→</span>
+<span class="node">Forward 2 headers</span><span class="arrow">→</span>
+<span class="node">Origin xử lý logic</span><span class="arrow">→</span>
+<span class="node">Trả content phù hợp</span>
+</div>
+
+<h4>🔧 Lambda@Edge</h4>
+<p>Chạy logic JS/Python tại edge, dùng cho: FLE custom, A/B testing, header manipulation, dynamic content routing.</p>
+
+<h3>🟪 Amazon API Gateway</h3>
 <table>
-<tr><th>Loai</th><th>Authorizer ho tro</th></tr>
-<tr><td><b>REST API</b></td><td>IAM, Lambda authorizer, Cognito User Pools</td></tr>
-<tr><td><b>HTTP API</b></td><td>IAM, Lambda authorizer, <b>JWT authorizer (built-in)</b></td></tr>
-<tr><td><b>WebSocket API</b></td><td>IAM, Lambda authorizer (KHONG co JWT built-in)</td></tr>
+<tr><th>Loại API</th><th>Authorizer hỗ trợ</th><th>Ghi chú</th></tr>
+<tr><td><b>REST API</b></td><td>IAM, Lambda authorizer, Cognito User Pools</td><td>Đầy đủ tính năng nhất</td></tr>
+<tr><td><b>HTTP API</b> ⭐</td><td>IAM, Lambda authorizer, <span class="hl">JWT authorizer (built-in)</span></td><td>Rẻ hơn, nhanh hơn REST</td></tr>
+<tr><td><b>WebSocket API</b></td><td>IAM, Lambda authorizer (<span class="hl-pink">KHÔNG có JWT built-in</span>)</td><td>Stateful, real-time</td></tr>
 </table>
-<div class="callout"><b>JWT khong code custom -> HTTP API + JWT authorizer.</b> WebSocket khong ho tro JWT built-in.</div>
-<h3>Amazon Route 53</h3>
+<div class="callout tip" data-icon="🎯">
+<b>Yêu cầu "JWT + không tự viết code"</b> → <span class="hl">HTTP API + JWT authorizer built-in</span>.
+<br>WebSocket KHÔNG có JWT built-in → loại ngay.
+</div>
+
+<h3>🟨 Amazon Route 53</h3>
 <ul>
-<li>Alias record tro toi ALB, CloudFront, S3 website, API Gateway.</li>
-<li>Routing policies: simple, weighted, latency, failover, geolocation, geoproximity, multi-value.</li>
-<li>Geolocation chi route theo quoc gia, KHONG xu ly language header.</li>
+<li>Alias record trỏ tới ALB, CloudFront, S3 website, API Gateway.</li>
+<li>Routing policies: simple, weighted, latency, failover, <b>geolocation</b>, geoproximity, multi-value.</li>
+<li><span class="tag warn">⚠️</span> Geolocation chỉ route theo quốc gia, KHÔNG xử lý language header.</li>
 </ul>
-<h3>AWS Global Accelerator</h3>
+
+<h3>🟫 AWS Global Accelerator</h3>
 <ul>
-<li>Toi uu duong di TCP/UDP qua AWS backbone, anycast IP.</li>
-<li>KHONG cache content (khac CloudFront). Phu hop game/IoT/realtime.</li>
+<li>Tối ưu đường đi TCP/UDP qua AWS backbone, anycast IP.</li>
+<li><span class="tag bad">❌</span> KHÔNG cache content (khác CloudFront). Phù hợp game / IoT / realtime.</li>
 </ul>
-<h3>VPC</h3>
-<ul>
-<li><b>VPC Flow Logs</b>: ghi metadata IP traffic in/out trong VPC. Dung de xac dinh request co toi AWS network hay chua (vd ALB timeout).</li>
-<li><b>VPC Endpoint</b>: private connect toi AWS service (S3, DynamoDB, KMS,...) khong qua Internet.</li>
-<li><b>PrivateLink</b>: chia se service giua VPC/account.</li>
-<li><b>NAT Gateway</b>: cho outbound Internet tu private subnet.</li>
-</ul>
+
+<h3>🟧 VPC</h3>
+<table>
+<tr><th>Component</th><th>Vai trò</th></tr>
+<tr><td><b>VPC Flow Logs</b> ⭐</td><td>Ghi metadata IP traffic IN/OUT trong VPC. <span class="hl">Dùng để xác định request có tới AWS network chưa</span> (vd ALB timeout từ laptop).</td></tr>
+<tr><td><b>VPC Endpoint</b></td><td>Private connect tới AWS service (S3, DynamoDB, KMS...) không qua Internet.</td></tr>
+<tr><td><b>PrivateLink</b></td><td>Chia sẻ service giữa VPC/account.</td></tr>
+<tr><td><b>NAT Gateway</b></td><td>Cho outbound Internet từ private subnet.</td></tr>
+</table>
 </section>
 
 <section id="security">
-<h2>5. Security & Identity</h2>
-<h3>IAM</h3>
+<h2><span class="num">05</span>Security & Identity</h2>
+
+<h3>🟧 IAM — Least Privilege</h3>
 <ul>
-<li><b>Least privilege</b>: cap dung quyen can thiet, scope theo Resource ARN.</li>
-<li>DynamoDB read actions: <code>GetItem</code>, <code>BatchGetItem</code>, <code>Query</code>, <code>Scan</code>.</li>
-<li>DynamoDB write actions: <code>PutItem</code>, <code>UpdateItem</code>, <code>DeleteItem</code>, <code>BatchWriteItem</code>.</li>
-<li>Trust policy voi <code>aws:SourceArn</code> = ARN chinh xac cua resource (vd state machine cua Step Functions) -> chi resource do moi assume duoc role.</li>
-<li>Tranh dung <code>"*"</code> hoac <code>StringNotEquals</code> ngu canh sai -> cap qua rong.</li>
+<li>Luôn cấp đúng quyền cần thiết, scope theo <span class="hl">Resource ARN</span> cụ thể.</li>
+<li><b>DynamoDB read actions</b>: <code>GetItem</code>, <code>BatchGetItem</code>, <code>Query</code>, <code>Scan</code>.</li>
+<li><b>DynamoDB write actions</b>: <code>PutItem</code>, <code>UpdateItem</code>, <code>DeleteItem</code>, <code>BatchWriteItem</code>.</li>
+<li><b>Trust policy</b> với <code>aws:SourceArn</code> = ARN chính xác của resource (vd state machine của Step Functions) → chỉ resource đó mới assume được role.</li>
+<li><span class="tag bad">❌ Tránh</span> dùng <code>"*"</code> trong Resource hoặc <code>StringNotEquals</code> sai ngữ cảnh → cấp quá rộng.</li>
 </ul>
-<h3>AWS KMS</h3>
+
+<pre>"Condition": {
+  "ArnLike": {
+    "aws:SourceArn": "arn:aws:states:ap-south-1:111111111111:stateMachine:myStateMachine"
+  }
+}</pre>
+
+<h3>🟦 AWS KMS</h3>
 <ul>
-<li><b>Customer managed key</b>: tu quan ly key policy, cho phep cross-account access. <b>AWS managed key</b> khong sua duoc policy.</li>
-<li><b>Cross-account secret access</b>: can ket hop IAM policy (Secrets Manager) o app account + KMS key policy (kms:Decrypt, kms:DescribeKey) o key owner account.</li>
-<li><b>GenerateDataKey</b>: tra ve plaintext data key + CiphertextBlob -> dung cho <b>envelope/client-side encryption</b>. Plaintext key ma hoa data, CiphertextBlob luu kem object de decrypt sau.</li>
-<li>KMS keys KHONG replicate cross-account; phai tao key moi va cap policy.</li>
+<li><b>Customer managed key</b>: tự quản lý key policy → cho phép <span class="hl">cross-account access</span>. <b>AWS managed key</b> KHÔNG sửa được policy.</li>
+<li><b>Cross-account secret access</b>: cần kết hợp:
+  <ul>
+    <li>IAM policy (Secrets Manager) ở <em>app account</em>.</li>
+    <li>KMS key policy (<code>kms:Decrypt</code>, <code>kms:DescribeKey</code>) ở <em>key owner account</em>.</li>
+  </ul>
+</li>
+<li><b>GenerateDataKey</b>: trả về <span class="hl">plaintext data key</span> + <span class="hl-pink">CiphertextBlob</span> → dùng cho <em>envelope / client-side encryption</em>.
+  <ul>
+    <li>Plaintext key mã hóa data.</li>
+    <li>CiphertextBlob lưu kèm object để decrypt sau (qua KMS).</li>
+  </ul>
+</li>
+<li><span class="tag bad">❌</span> KMS keys KHÔNG replicate cross-account; phải tạo key mới và cấp policy.</li>
 </ul>
-<h3>AWS Secrets Manager</h3>
+
+<h3>🟪 AWS Secrets Manager</h3>
 <ul>
-<li>Luu credential DB, API key, connection string. Ho tro <b>automatic rotation</b>.</li>
-<li>Lambda <b>fetch tai runtime</b> de luon dung gia tri moi (khong nhung qua env var -> env var dong bang luc init).</li>
-<li>Lambda Extension cua Secrets Manager: caching o moi truong runtime.</li>
+<li>Lưu credential DB, API key, connection string. Hỗ trợ <span class="hl">automatic rotation</span>.</li>
+<li>Lambda <b>fetch tại runtime</b> để luôn dùng giá trị mới nhất (KHÔNG nhúng qua env var — env var đóng băng lúc init).</li>
+<li>Lambda Extension của Secrets Manager: caching ở môi trường runtime.</li>
 </ul>
-<h3>AWS Systems Manager Parameter Store</h3>
+
+<div class="callout tip" data-icon="🔄">
+<b>Mẹo:</b> Yêu cầu "credential update tự động, không sửa code/config" → <span class="hl">Secrets Manager + fetch runtime</span>. Loại Parameter Store reference qua env var.
+</div>
+
+<h3>🟨 AWS Systems Manager Parameter Store</h3>
 <ul>
-<li>Luu config va secret (SecureString = ma hoa qua KMS).</li>
-<li>Re hon Secrets Manager, nhung khong co rotation built-in cho DB credential.</li>
+<li>Lưu config và secret (<code>SecureString</code> = mã hóa qua KMS).</li>
+<li>Rẻ hơn Secrets Manager, nhưng KHÔNG có rotation built-in cho DB credential.</li>
 </ul>
-<h3>AWS AppConfig</h3>
+
+<h3>🟫 AWS AppConfig</h3>
 <ul>
-<li>Quan ly <b>feature flags</b> + config dynamic.</li>
-<li><b>AppConfig Agent</b> tren EC2/Lambda Extension poll dinh ky, cache local, app doc qua <b>localhost endpoint</b> -> overhead toi thieu, rollback an toan.</li>
+<li>Quản lý <span class="hl">feature flags</span> + config dynamic.</li>
+<li><b>AppConfig Agent</b> trên EC2 / Lambda Extension poll định kỳ, cache local, app đọc qua <em>localhost endpoint</em> → overhead tối thiểu, rollback an toàn.</li>
 </ul>
-<h3>Amazon Cognito</h3>
+<div class="flow">
+<span class="node">AppConfig (control plane)</span><span class="arrow">→</span>
+<span class="node">Agent poll trên EC2/Lambda</span><span class="arrow">→</span>
+<span class="node">App đọc localhost</span>
+</div>
+
+<h3>🟧 Amazon Cognito</h3>
 <table>
-<tr><th>Component</th><th>Vai tro</th></tr>
-<tr><td><b>User Pool</b></td><td>Auth: sign-up, sign-in, MFA, password policy, recovery, phat hanh JWT</td></tr>
-<tr><td><b>Identity Pool</b></td><td>Cap temporary AWS credentials (qua STS) de goi truc tiep AWS service</td></tr>
+<tr><th>Component</th><th>Vai trò</th><th>Khi dùng</th></tr>
+<tr><td><b>User Pool</b></td><td>Auth: sign-up, sign-in, MFA, password policy, recovery, phát hành JWT</td><td>App có end-user cần đăng ký/đăng nhập</td></tr>
+<tr><td><b>Identity Pool</b></td><td>Cấp <span class="hl">temporary AWS credentials</span> (qua STS) để gọi trực tiếp AWS service</td><td>Khi client app cần gọi S3/DynamoDB trực tiếp</td></tr>
 </table>
+
 <ul>
-<li><b>Mobile app sign in + access backend</b> -> User Pool + JWT goi API Gateway/Lambda.</li>
-<li><b>Social login (Google, Facebook, Apple, Amazon)</b> -> User Pool ho tro federation (web identity federation).</li>
-<li>Mobile app MFA: bat MFA tren User Pool, Cognito tu gui SMS/TOTP - <b>khong code SNS Publish</b>.</li>
-<li>Khong dung IAM users cho end-user.</li>
+<li><b>Mobile app sign-in + access backend</b> → <span class="hl">User Pool</span> + JWT gọi API Gateway/Lambda.</li>
+<li><b>Social login</b> (Google, Facebook, Apple, Amazon) → User Pool hỗ trợ federation (web identity federation).</li>
+<li><b>Mobile MFA</b>: bật MFA trên User Pool → Cognito tự gửi SMS/TOTP. <span class="tag bad">❌ KHÔNG code SNS Publish.</span></li>
+<li><span class="tag bad">❌</span> Không dùng IAM users cho end-user của app.</li>
 </ul>
-<h3>AWS STS</h3>
+
+<h3>🟦 AWS STS</h3>
 <ul>
-<li><b>AssumeRole</b>: nhan temporary credentials de test quyen role hoac cross-account.</li>
-<li><b>Regional endpoints</b> (<code>sts.&lt;region&gt;.amazonaws.com</code>) giam latency va tang resilience so voi global endpoint.</li>
-<li>AssumeRoleWithSAML: federation enterprise (ADFS, Okta). AssumeRoleWithWebIdentity: OIDC (Cognito, Google,...).</li>
+<li><b>AssumeRole</b>: nhận temporary credentials → dùng để test quyền role hoặc cross-account.</li>
+<li><b>Regional endpoints</b> (<code>sts.&lt;region&gt;.amazonaws.com</code>) → giảm latency và tăng resilience so với global endpoint.</li>
+<li><b>AssumeRoleWithSAML</b>: federation enterprise (ADFS, Okta). <b>AssumeRoleWithWebIdentity</b>: OIDC (Cognito, Google...).</li>
 </ul>
-<h3>AWS Directory Service</h3>
+<div class="callout info" data-icon="🌏">
+App ở Asia Pacific gọi STS bị latency → chuyển từ global endpoint sang <span class="hl">Regional endpoint gần nhất</span> (vd <code>sts.ap-northeast-1.amazonaws.com</code>).
+</div>
+
+<h3>🟪 AWS Directory Service</h3>
 <ul>
-<li><b>AWS Directory Service for Microsoft AD</b>: managed AD trong AWS, ho tro <b>trust relationship</b> voi on-prem AD.</li>
-<li>Nhan vien dang nhap AWS Console bang AD credentials hien co, IAM role tro toi cac group AD -> RBAC.</li>
-<li>It overhead hon viec tu xay identity broker hoac SAML federation thu cong.</li>
+<li><b>AWS Directory Service for Microsoft AD</b>: managed AD trong AWS, hỗ trợ <span class="hl">trust relationship</span> với on-prem AD.</li>
+<li>Nhân viên đăng nhập AWS Console bằng AD credentials hiện có; IAM role trỏ tới các group AD → RBAC.</li>
+<li>Ít overhead hơn việc tự xây identity broker hoặc SAML federation thủ công.</li>
 </ul>
-<h3>AWS WAF, AWS Config, Cross-cutting</h3>
+<div class="flow">
+<span class="node">On-prem AD</span><span class="arrow">⇄ Trust ⇄</span>
+<span class="node">AWS Managed AD</span><span class="arrow">→</span>
+<span class="node">IAM Role</span><span class="arrow">→</span>
+<span class="node">AWS Console</span>
+</div>
+
+<h3>🟨 WAF, Config, các dịch vụ bảo mật khác</h3>
 <ul>
-<li><b>WAF</b>: loc request HTTP/HTTPS (SQLi, geo match...). KHONG ma hoa noi dung.</li>
-<li><b>AWS Config + managed rule</b> <code>acm-certificate-expiration-check</code>: phat hien cert ACM (bao gom imported certs) sap het han. Ket hop EventBridge rule + SNS de canh bao.</li>
-<li>Su kien "ACM Certificate Approaching Expiration" cua EventBridge chi cho ACM-managed certs (khong cho imported certs).</li>
+<li><b>AWS WAF</b>: lọc request HTTP/HTTPS (SQLi, geo match...). <span class="hl-pink">KHÔNG mã hóa nội dung</span>.</li>
+<li><b>AWS Config + managed rule</b> <code>acm-certificate-expiration-check</code>: phát hiện cert ACM (bao gồm <span class="hl">imported certs</span>) sắp hết hạn. Kết hợp EventBridge rule + SNS để cảnh báo.</li>
+<li><span class="tag warn">⚠️</span> Sự kiện "ACM Certificate Approaching Expiration" của EventBridge chỉ phát cho ACM-managed certs, KHÔNG phát cho imported certs.</li>
 </ul>
+<div class="flow">
+<span class="node">AWS Config check 24h</span><span class="arrow">→</span>
+<span class="node">EventBridge rule (Compliance Change)</span><span class="arrow">→</span>
+<span class="node">SNS Topic</span><span class="arrow">→</span>
+<span class="node">Email security team</span>
+</div>
+
+<h3>🟧 Cross-account Resource Access</h3>
+<div class="callout note" data-icon="🔐">
+<b>Pattern cross-account CloudFormation truy cập S3 code:</b>
+<ul style="margin:6px 0">
+<li>S3 bucket policy với <code>Principal: {"AWS": [account-IDs]}</code> cụ thể.</li>
+<li>Cấp đúng <code>s3:GetObject</code> + <code>s3:ListBucket</code>.</li>
+<li><span class="tag bad">❌</span> Tránh <code>Principal: "*"</code> hoặc <code>Resource: "*"</code> → không an toàn.</li>
+</ul>
+</div>
 </section>
 
 <section id="messaging">
-<h2>6. Messaging & Integration</h2>
-<h3>Amazon SNS</h3>
+<h2><span class="num">06</span>Messaging & Integration</h2>
+
+<h3>🟧 Amazon SNS</h3>
 <ul>
-<li>Pub/Sub topic, fan-out tin nhan toi nhieu subscriber (SQS, Lambda, HTTPS, SMS, email).</li>
+<li>Pub/Sub topic, <span class="hl">fan-out</span> tin nhắn tới nhiều subscriber (SQS, Lambda, HTTPS, SMS, email).</li>
 <li><b>Standard topic</b>: best-effort ordering, at-least-once.</li>
-<li><b>FIFO topic</b>: ordering (MessageGroupId) + deduplication. Phu hop nghiep vu can dam bao thu tu va khong trung (vi du SMS xac nhan giao dich).</li>
-<li><b>Subscription filter policies</b>: loc message tai subscription level (theo message attribute). Tot nhat cho fan-out co dieu kien (so voi loc trong code consumer).</li>
-<li><b>S3 -> SNS -> nhieu SQS</b> voi filter policy = pattern fan-out chuan, khong can sua Lambda code.</li>
+<li><b>FIFO topic</b> ⭐: <span class="hl">ordering (MessageGroupId) + deduplication</span>. Phù hợp nghiệp vụ cần đảm bảo thứ tự và không trùng (vd: SMS xác nhận giao dịch chứng khoán).</li>
+<li><b>Subscription filter policies</b>: lọc message tại <em>subscription level</em> (theo message attribute). Tốt nhất cho fan-out có điều kiện — KHÔNG cần lọc trong code consumer.</li>
 </ul>
-<h3>Amazon SQS</h3>
+
+<div class="callout tip" data-icon="🎯">
+<b>Pattern fan-out chuẩn:</b>
+<div class="flow">
+<span class="node">S3 event</span><span class="arrow">→</span>
+<span class="node">SNS topic</span><span class="arrow">→</span>
+<span class="node">SQS A (filter: dept=A)</span>
+<span class="arrow">+</span>
+<span class="node">SQS B (filter: dept=B)</span>
+</div>
+KHÔNG cần sửa Lambda code → ít vận hành.
+</div>
+
+<h3>🟦 Amazon SQS</h3>
+<table>
+<tr><th>Loại</th><th>Đặc điểm</th><th>Khi dùng</th></tr>
+<tr><td><b>Standard</b></td><td>Throughput cao, ordering best-effort, at-least-once</td><td>Workload chấp nhận trùng/sai thứ tự</td></tr>
+<tr><td><b>FIFO</b></td><td>Ordering + exactly-once, throughput thấp hơn</td><td>Nghiệp vụ cần thứ tự, không trùng</td></tr>
+</table>
+
+<h4>⚙️ Các khái niệm quan trọng</h4>
 <ul>
-<li><b>Standard queue</b>: throughput cao, ordering best-effort, at-least-once.</li>
-<li><b>FIFO queue</b>: dam bao thu tu va exactly-once, throughput thap hon.</li>
-<li><b>Visibility Timeout</b>: thoi gian message bi "an" sau khi consumer doc. Lambda timeout phai &lt;= visibility timeout - buffer.</li>
-<li><b>Long polling</b> (<code>WaitTimeSeconds</code> 1-20): giam empty receive, tiet kiem chi phi.</li>
-<li><b>Batching</b>: ReceiveMessage co the lay toi 10 message/lan -> giam request, giam chi phi.</li>
-<li><b>DLQ</b>: nhan message that bai sau khi het maxReceiveCount; chi log loi, khong log success.</li>
-<li>SQS message max 256 KB; voi payload lon dung <b>SQS Extended Client + S3</b> (luu S3, gui reference).</li>
+<li><b>Visibility Timeout</b>: thời gian message bị "ẩn" sau khi consumer đọc. <span class="hl">Lambda timeout phải ≤ visibility timeout - buffer</span>.</li>
+<li><b>Long polling</b> (<code>WaitTimeSeconds</code> 1–20): giảm empty receive, <span class="hl-green">tiết kiệm chi phí</span>.</li>
+<li><b>Batching</b>: ReceiveMessage có thể lấy tối đa 10 message/lần → giảm request, giảm chi phí.</li>
+<li><b>DLQ (Dead-Letter Queue)</b>: nhận message thất bại sau khi hết <code>maxReceiveCount</code>; chỉ log lỗi, KHÔNG log success.</li>
+<li>SQS message <span class="hl-pink">tối đa 256 KB</span>; với payload lớn dùng <em>SQS Extended Client + S3</em>.</li>
 </ul>
-<h3>EventBridge / EventBridge Pipes / Scheduler</h3>
+<div class="callout tip" data-icon="💰"><b>Cost-effective SQS Standard:</b> Long polling + Batching = chuẩn.</div>
+
+<h3>🟪 EventBridge / Pipes / Scheduler</h3>
 <ul>
-<li><b>EventBridge Rules</b>: pattern match event tu AWS service hoac custom -> target (Lambda, SNS, SQS, Step Functions...).</li>
-<li><b>EventBridge Scheduler</b>: lich hen gio (cron/rate) - chi de invoke, KHONG dieu phoi workflow theo phu thuoc.</li>
-<li><b>EventBridge Pipes</b>: pipe source -> filter -> enrichment -> target. Khong gui SMS truc tiep.</li>
+<li><b>EventBridge Rules</b>: pattern match event từ AWS service hoặc custom → target (Lambda, SNS, SQS, Step Functions...).</li>
+<li><b>EventBridge Scheduler</b>: lịch hẹn giờ (cron/rate) — chỉ để invoke, <span class="hl-pink">KHÔNG điều phối workflow theo phụ thuộc</span>.</li>
+<li><b>EventBridge Pipes</b>: pipe source → filter → enrichment → target. KHÔNG gửi SMS trực tiếp.</li>
 </ul>
-<h3>AWS Step Functions</h3>
+
+<h3>🟨 AWS Step Functions</h3>
 <ul>
-<li>Orchestration workflow (Amazon States Language). Phu hop khi can chay nhieu Lambda <b>theo thu tu</b>, voi retry/error handling, parallel, choice...</li>
-<li>So sanh: SNS/SQS khong dam bao thu tu giua nhieu function khac nhau theo chain logic.</li>
+<li>Orchestration workflow (Amazon States Language).</li>
+<li>Phù hợp khi cần chạy <span class="hl">nhiều Lambda theo thứ tự</span>, với retry/error handling, parallel, choice...</li>
+<li>So sánh: SNS/SQS KHÔNG đảm bảo thứ tự thực thi giữa nhiều function khác nhau theo chain logic.</li>
 </ul>
-<h3>Amazon Kinesis Data Firehose</h3>
+<div class="flow">
+<span class="node">Order received</span><span class="arrow">→</span>
+<span class="node">Validate Lambda</span><span class="arrow">→</span>
+<span class="node">Payment Lambda</span><span class="arrow">→</span>
+<span class="node">Inventory Lambda</span><span class="arrow">→</span>
+<span class="node">Notification Lambda</span>
+</div>
+
+<h3>🟫 Amazon Kinesis Data Firehose</h3>
 <ul>
-<li>Streaming ETL toi S3, Redshift, OpenSearch, HTTP endpoint.</li>
-<li>Ho tro <b>data transformation via Lambda</b>: bien doi/redact PII truoc khi ghi xuong destination.</li>
-<li>Khong gui SMS truc tiep, khong target la Step Functions/EC2.</li>
+<li>Streaming ETL tới S3, Redshift, OpenSearch, HTTP endpoint.</li>
+<li>Hỗ trợ <span class="hl">data transformation via Lambda</span>: biến đổi/redact PII trước khi ghi xuống destination.</li>
+<li><span class="tag bad">❌</span> KHÔNG gửi SMS trực tiếp, KHÔNG target là Step Functions/EC2.</li>
 </ul>
+<div class="flow">
+<span class="node">Producer</span><span class="arrow">→</span>
+<span class="node">Firehose</span><span class="arrow">→</span>
+<span class="node">Lambda redact PII</span><span class="arrow">→</span>
+<span class="node">S3 (sạch)</span>
+</div>
 </section>
 
 <section id="cicd">
-<h2>7. CI/CD & IaC</h2>
-<h3>AWS CodePipeline</h3>
+<h2><span class="num">07</span>CI/CD & Infrastructure as Code</h2>
+
+<h3>🟧 AWS CodePipeline</h3>
+<p>Orchestration pipeline: Source → Build → Test → Deploy. Tích hợp CodeCommit/GitHub/S3 (source), CodeBuild (build/test), CodeDeploy, CloudFormation, Step Functions.</p>
+
+<h3>🟦 AWS CodeBuild</h3>
+<p>Managed build server. Chạy script tùy ý theo <code>buildspec.yml</code>: build, unit test, <span class="hl">integration test</span>, package artifact.</p>
+
+<h3>🟪 AWS CodeDeploy</h3>
 <ul>
-<li>Orchestration pipeline: Source -> Build -> Test -> Deploy.</li>
-<li>Tich hop CodeCommit/GitHub/S3 (source), CodeBuild (build/test), CodeDeploy, CloudFormation, Step Functions (deploy/orchestration).</li>
+<li>Deploy app lên EC2 / On-Prem, Lambda, ECS.</li>
+<li>Service role cần policy <code>AWSCodeDeployRole</code> (EC2/On-Prem) hoặc <code>AWSCodeDeployRoleForECS</code>.</li>
+<li>Lỗi <code>IAM_ROLE_PERMISSIONS</code> → gắn đúng policy tương ứng.</li>
+<li>Deployment config: <b>Canary, Linear, AllAtOnce</b> → trả về <em>traffic shifting</em> cho Lambda alias.</li>
 </ul>
-<h3>AWS CodeBuild</h3>
+
+<h3>🟨 AWS CloudFormation</h3>
 <ul>
-<li>Managed build server. Chay script tuy y theo <code>buildspec.yml</code>: build, unit test, <b>integration test</b>, package artifact.</li>
+<li>IaC khai báo bằng JSON/YAML.</li>
+<li><b>DeletionPolicy</b>: mặc định <span class="hl-pink">Delete</span>. Có thể đặt <code>Retain</code> hoặc <code>Snapshot</code> để bảo toàn resource khi update/delete stack.</li>
+<li><span class="tag warn">⚠️</span> <b>Đổi tên resource</b> (logical ID hoặc Name property) trong template = CloudFormation xem là resource mới → <span class="hl">tạo mới + xóa cũ</span> (theo DeletionPolicy).</li>
+<li><b>Change sets</b>: preview thay đổi trước khi apply, KHÔNG phải công cụ test code local.</li>
+<li><b>StackSets</b> ⭐: deploy stack trên <span class="hl">nhiều account/region</span> một lần → phù hợp multi-account.</li>
 </ul>
-<h3>AWS CodeDeploy</h3>
+
+<div class="callout danger" data-icon="💥">
+<b>Bug điển hình:</b> Đổi tên DynamoDB table trong template + DeletionPolicy mặc định → <span class="hl-pink">CloudFormation TẠO MỚI bảng + XÓA bảng cũ</span>. Mất data!
+<br><b>Phòng tránh:</b> Đặt <code>DeletionPolicy: Retain</code> cho resource quan trọng.
+</div>
+
+<h3>🟫 AWS SAM (Serverless Application Model)</h3>
 <ul>
-<li>Deploy app len EC2/On-Prem, Lambda, ECS.</li>
-<li>Service role can policy <b>AWSCodeDeployRole</b> (EC2/On-Prem) hoac <b>AWSCodeDeployRoleForECS</b>. Loi <code>IAM_ROLE_PERMISSIONS</code> -> dinh kem dung policy.</li>
-<li>Deployment config: Canary, Linear, AllAtOnce; tra ve <b>traffic shifting</b> cho Lambda alias.</li>
+<li>Extension của CloudFormation cho serverless.</li>
+<li><code>sam local invoke</code> / <code>sam local start-api</code>: <span class="hl">test Lambda + API Gateway local</span>.</li>
+<li>Tích hợp CodePipeline: dùng <em>SAM CLI commands</em> trong các stage để build, package, deploy.</li>
 </ul>
-<h3>AWS CloudFormation</h3>
-<ul>
-<li>IaC khai bao bang JSON/YAML.</li>
-<li><b>DeletionPolicy</b>: mac dinh <b>Delete</b>. Co the dat <code>Retain</code> hoac <code>Snapshot</code> de bao toan resource khi update/delete stack.</li>
-<li><b>Doi ten resource (logical ID hoac Name property)</b> trong template = CloudFormation xem do la resource moi -> tao moi + xoa cu (theo DeletionPolicy).</li>
-<li><b>Change sets</b>: preview thay doi truoc khi apply, KHONG phai cong cu test code local.</li>
-<li><b>StackSets</b>: deploy stack tren <b>nhieu account/region</b> mot lan -> phu hop multi-account.</li>
-</ul>
-<h3>AWS SAM (Serverless Application Model)</h3>
-<ul>
-<li>Extension cua CloudFormation cho serverless.</li>
-<li><b>sam local invoke / sam local start-api</b>: test Lambda + API Gateway tren may local.</li>
-<li>Tich hop CodePipeline: dung <b>SAM CLI</b> trong cac stage de build, package, deploy.</li>
-</ul>
+
+<h3>🟧 Multi-account CI/CD Pattern</h3>
+<div class="callout note" data-icon="🏗️">
+<b>Provision test infra qua nhiều AWS account + chạy integration test:</b>
+<div class="flow">
+<span class="node">CodePipeline</span><span class="arrow">→</span>
+<span class="node">CloudFormation StackSets (multi-account)</span><span class="arrow">→</span>
+<span class="node">CodeBuild chạy tests</span>
+</div>
+Đây là pattern chuẩn, ít vận hành nhất.
+</div>
 </section>
 
 <section id="monitor">
-<h2>8. Monitoring & Observability</h2>
-<h3>Amazon CloudWatch</h3>
+<h2><span class="num">08</span>Monitoring & Observability</h2>
+
+<h3>🟧 Amazon CloudWatch</h3>
+<table>
+<tr><th>Tính năng</th><th>Dùng để</th></tr>
+<tr><td><b>Logs</b></td><td>Thu log từ Lambda, EC2 (CloudWatch agent), on-premises (CloudWatch agent cài trên máy + IAM credentials).</td></tr>
+<tr><td><b>Logs Insights</b></td><td>Query log với cú pháp riêng. Lambda có <code>@duration</code> nhưng là tổng thời gian — KHÔNG tách downstream.</td></tr>
+<tr><td><b>Embedded Metric Format (EMF)</b> ⭐</td><td>Log JSON theo spec EMF → CloudWatch tự trích xuất <span class="hl">custom metrics vào namespace tùy chọn</span> (không cần PutMetricData).</td></tr>
+<tr><td><b>Lambda Insights</b></td><td>Extension layer + IAM policy <code>CloudWatchLambdaInsightsExecutionRolePolicy</code> → performance metrics (CPU, memory, init duration).</td></tr>
+<tr><td><b>CloudWatch RUM</b></td><td>Real User Monitoring frontend — KHÔNG dùng cho Lambda log.</td></tr>
+</table>
+
+<h3>🟦 AWS X-Ray</h3>
 <ul>
-<li><b>Logs</b>: thu log tu Lambda, EC2 (CloudWatch agent), on-premises (CloudWatch agent cai tren may + IAM credentials).</li>
-<li><b>Logs Insights</b>: query log voi cu phap rieng. Co the dung <code>@duration</code> cho Lambda log nhung do la tong thoi gian, khong tach downstream.</li>
-<li><b>Embedded Metric Format (EMF)</b>: log JSON theo dac ta EMF -> CloudWatch tu trich xuat custom metrics vao namespace tuy chon (khong can goi PutMetricData rieng).</li>
-<li><b>Lambda Insights</b>: extension layer + IAM policy (<code>CloudWatchLambdaInsightsExecutionRolePolicy</code>) -> theo doi performance Lambda (memory, CPU, init duration).</li>
-<li><b>CloudWatch RUM</b>: monitoring frontend (real user monitoring), KHONG dung de tao metric tu Lambda log.</li>
+<li>Distributed tracing. Bật trên Lambda (active tracing) hoặc SDK instrumentation.</li>
+<li><b>Service map</b>: các <em>node</em> (service) và <em>edge</em> (line giữa chúng).</li>
+<li>Click <span class="hl">EDGE</span> = latency BAO GỒM network giữa 2 service (Lambda → S3).</li>
+<li>Click <span class="hl-pink">NODE</span> = chỉ đo latency của service đó (không gồm network).</li>
+<li>Active tracing cho SNS: đo <span class="hl">rate + latency</span> publish → deliver, đặc biệt hữu ích cho FIFO topic.</li>
 </ul>
-<h3>AWS X-Ray</h3>
+
+<h3>🟪 VPC Flow Logs</h3>
 <ul>
-<li>Distributed tracing. Bat tren Lambda (active tracing) hoac SDK instrumentation.</li>
-<li><b>Service map</b>: cac node (service) va edge (line giua chung). Click <b>edge</b> = latency bao gom network giua 2 service (vd Lambda -> S3). Click <b>node</b> = chi do latency cua service do.</li>
-<li>Active tracing cho SNS: do latency publish -> deliver, dung de phat hien rate va latency cua FIFO topic.</li>
+<li>Ghi IP traffic in/out của ENI.</li>
+<li>Dùng để kiểm tra request có tới VPC chưa, traffic bị accept/reject.</li>
+<li>Use case điển hình: debug ALB timeout từ laptop — xem Flow Log để biết packet có đến không.</li>
 </ul>
-<h3>VPC Flow Logs</h3>
+
+<h3>🟨 AWS Config</h3>
 <ul>
-<li>Ghi IP traffic in/out cua ENI. Dung de kiem tra request co toi VPC chua, traffic bi accept/reject.</li>
+<li>Theo dõi config và compliance của resource.</li>
+<li>Managed rules ví dụ: <code>acm-certificate-expiration-check</code>, <code>s3-bucket-public-read-prohibited</code>.</li>
+<li>Kết hợp EventBridge rule (<em>Config Rules Compliance Change</em>) + SNS = cảnh báo tự động.</li>
 </ul>
-<h3>AWS Config</h3>
+
+<h3>🟫 AWS CloudTrail</h3>
 <ul>
-<li>Theo doi config va compliance cua resource. Managed rules vd <code>acm-certificate-expiration-check</code>, <code>s3-bucket-public-read-prohibited</code>.</li>
-<li>Ket hop EventBridge rule (Config Rules Compliance Change) + SNS = canh bao tu dong.</li>
-</ul>
-<h3>AWS CloudTrail</h3>
-<ul>
-<li>Ghi <b>API call</b> tren account (audit). KHONG ghi performance/latency cua service.</li>
+<li>Ghi <span class="hl">API call</span> trên account (audit).</li>
+<li><span class="tag bad">❌</span> KHÔNG ghi performance/latency của service.</li>
 </ul>
 </section>
 
-<section>
-<h2>9. Tom luoc cac dinh tuyen quyet dinh thuong gap</h2>
+<section id="patterns">
+<h2><span class="num">09</span>Decision Matrix — Tra cứu nhanh khi thi</h2>
 <table>
-<tr><th>Yeu cau</th><th>Lua chon dung</th></tr>
-<tr><td>Client IP that sau ALB</td><td>X-Forwarded-For</td></tr>
-<tr><td>Latency giua Lambda va S3</td><td>X-Ray active tracing, click edge tren service map</td></tr>
-<tr><td>Cross-account access S3 + KMS</td><td>IAM policy + KMS key policy (kms:Decrypt + kms:DescribeKey)</td></tr>
-<tr><td>Test feature voi nhom nho roi rollout 100%</td><td>Canary deployment</td></tr>
-<tr><td>Giu 1 noncurrent version</td><td>S3 Lifecycle rule (NewerNoncurrentVersions)</td></tr>
-<tr><td>Query orders theo accountId co GSI</td><td>Query tren GSI (khong Scan)</td></tr>
-<tr><td>Field-level encryption tai edge</td><td>CloudFront + Lambda@Edge + RSA key trong KMS</td></tr>
-<tr><td>DB credentials tu cap nhat khi rotate</td><td>Secrets Manager + fetch runtime trong Lambda</td></tr>
-<tr><td>Encrypt sensitive data trong S3</td><td>SSE-S3 (don gian) hoac SSE-KMS (audit)</td></tr>
-<tr><td>Fan-out 1 producer -> nhieu Lambda theo dieu kien</td><td>SNS topic + subscription filter policies</td></tr>
-<tr><td>Mobile app sign-up/sign-in + backend</td><td>Cognito User Pool</td></tr>
-<tr><td>Redact PII khi consumer goi GetObject S3</td><td>S3 Object Lambda Access Point</td></tr>
-<tr><td>Trust policy cho 1 state machine duy nhat</td><td>ArnLike aws:SourceArn = full ARN</td></tr>
-<tr><td>Doc lap nhieu lan tu file lon trong Lambda</td><td>Tang /tmp ephemeral storage, copy file ve /tmp</td></tr>
-<tr><td>SNS FIFO ordering + dedup cho SMS</td><td>SNS FIFO topic</td></tr>
-<tr><td>SAM trong CodePipeline</td><td>Stage chay SAM CLI commands</td></tr>
-<tr><td>Lambda truy cap RDS private</td><td>Attach Lambda vao VPC private subnet + SG</td></tr>
-<tr><td>Shared persistent storage cho ECS Fargate</td><td>EFS qua efsVolumeConfiguration</td></tr>
-<tr><td>CloudFormation doi ten table</td><td>Tao moi + xoa cu (DeletionPolicy mac dinh Delete)</td></tr>
-<tr><td>Feature flags vung dong, polling local</td><td>AWS AppConfig + AppConfig Agent</td></tr>
-<tr><td>Tranh duplicate Lambda+SQS khi xu ly lau</td><td>Tang SQS Visibility Timeout</td></tr>
-<tr><td>Giam time-out Lambda khi file lon</td><td>Tang timeout (hoac memory neu CPU bottleneck)</td></tr>
-<tr><td>Chay nhieu Lambda theo thu tu</td><td>Step Functions state machine</td></tr>
-<tr><td>Lambda doc credential moi nhat</td><td>Secrets Manager fetch tai runtime</td></tr>
-<tr><td>SQS standard cost-effective</td><td>Long polling + Batch</td></tr>
-<tr><td>Mobile MFA</td><td>Cognito User Pool + bat MFA</td></tr>
-<tr><td>STS latency tu Asia</td><td>STS Regional endpoint</td></tr>
-<tr><td>SSL cert tu third-party het han</td><td>AWS Config + EventBridge + SNS</td></tr>
-<tr><td>Lambda + RDS surge connection</td><td>RDS Proxy</td></tr>
-<tr><td>Notify cho moi Lambda invocation</td><td>Async destinations (success + failure)</td></tr>
-<tr><td>Kinesis Firehose redact PII</td><td>Lambda transformation truoc khi ghi S3</td></tr>
-<tr><td>Beanstalk: deploy nhanh, zero downtime, all users</td><td>Immutable</td></tr>
-<tr><td>Test role permissions</td><td>aws sts assume-role</td></tr>
-<tr><td>Lambda warm + init time</td><td>Provisioned Concurrency + publish version</td></tr>
-<tr><td>HTTP API JWT khong tu code</td><td>HTTP API + JWT authorizer built-in</td></tr>
-<tr><td>DynamoDB sync sang Sheet</td><td>Streams + Lambda, NEW_IMAGE</td></tr>
-<tr><td>On-prem AD federation toi AWS Console</td><td>AWS Directory Service for Microsoft AD + trust</td></tr>
+<tr><th>Yêu cầu / Tình huống</th><th>Lựa chọn đúng</th></tr>
+<tr><td>Client IP thật sau ALB</td><td><span class="hl">X-Forwarded-For</span></td></tr>
+<tr><td>Latency giữa Lambda và S3</td><td>X-Ray active tracing, click <b>edge</b> trên service map</td></tr>
+<tr><td>Cross-account access S3 + KMS</td><td>IAM policy + KMS key policy (<code>kms:Decrypt</code> + <code>kms:DescribeKey</code>)</td></tr>
+<tr><td>Test feature với nhóm nhỏ rồi rollout 100%</td><td><b>Canary deployment</b></td></tr>
+<tr><td>Giữ 1 noncurrent version</td><td>S3 Lifecycle rule (<code>NewerNoncurrentVersions</code>)</td></tr>
+<tr><td>Query orders theo accountId có GSI</td><td><b>Query trên GSI</b> (không Scan)</td></tr>
+<tr><td>Field-level encryption tại edge</td><td>CloudFront + Lambda@Edge + RSA key trong KMS</td></tr>
+<tr><td>DB credentials tự cập nhật khi rotate</td><td>Secrets Manager + <b>fetch runtime</b> trong Lambda</td></tr>
+<tr><td>Encrypt sensitive data trong S3</td><td><b>SSE-S3</b> (đơn giản) hoặc SSE-KMS (audit)</td></tr>
+<tr><td>Fan-out 1 producer → nhiều Lambda theo điều kiện</td><td><b>SNS topic + subscription filter policies</b></td></tr>
+<tr><td>Mobile app sign-up/sign-in + backend</td><td><b>Cognito User Pool</b></td></tr>
+<tr><td>Redact PII khi consumer gọi GetObject S3</td><td><b>S3 Object Lambda Access Point</b></td></tr>
+<tr><td>Trust policy cho 1 state machine duy nhất</td><td><code>ArnLike</code> <code>aws:SourceArn</code> = full ARN</td></tr>
+<tr><td>Đọc lặp nhiều lần từ file lớn trong Lambda</td><td>Tăng <code>/tmp</code> ephemeral storage, copy file về <code>/tmp</code></td></tr>
+<tr><td>SNS FIFO ordering + dedup cho SMS</td><td><b>SNS FIFO topic</b></td></tr>
+<tr><td>SAM trong CodePipeline</td><td>Stage chạy <b>SAM CLI commands</b></td></tr>
+<tr><td>Lambda truy cập RDS private</td><td>Attach Lambda vào VPC private subnet + SG</td></tr>
+<tr><td>Shared persistent storage cho ECS Fargate</td><td><b>EFS</b> qua <code>efsVolumeConfiguration</code></td></tr>
+<tr><td>CloudFormation đổi tên table</td><td>Tạo mới + xóa cũ (DeletionPolicy mặc định Delete)</td></tr>
+<tr><td>Feature flags polling local</td><td><b>AWS AppConfig + AppConfig Agent</b></td></tr>
+<tr><td>Tránh duplicate Lambda+SQS khi xử lý lâu</td><td>Tăng <b>SQS Visibility Timeout</b></td></tr>
+<tr><td>Giảm timeout error Lambda khi file lớn</td><td>Tăng <b>timeout</b> (hoặc memory nếu CPU bottleneck)</td></tr>
+<tr><td>Chạy nhiều Lambda theo thứ tự</td><td><b>Step Functions</b> state machine</td></tr>
+<tr><td>Lambda đọc credential mới nhất</td><td>Secrets Manager fetch tại runtime</td></tr>
+<tr><td>SQS Standard cost-effective</td><td><b>Long polling + Batch</b></td></tr>
+<tr><td>Mobile MFA</td><td>Cognito User Pool + bật MFA</td></tr>
+<tr><td>STS latency từ Asia</td><td><b>STS Regional endpoint</b></td></tr>
+<tr><td>SSL cert third-party hết hạn</td><td>AWS Config + EventBridge + SNS</td></tr>
+<tr><td>Lambda + RDS surge connection</td><td><b>RDS Proxy</b></td></tr>
+<tr><td>Notify cho mọi Lambda invocation</td><td>Async destinations (success + failure)</td></tr>
+<tr><td>Kinesis Firehose redact PII</td><td>Lambda transformation trước khi ghi S3</td></tr>
+<tr><td>Beanstalk: deploy nhanh, zero downtime</td><td><b>Immutable</b></td></tr>
+<tr><td>Test role permissions</td><td><code>aws sts assume-role</code></td></tr>
+<tr><td>Lambda warm + init time</td><td><b>Provisioned Concurrency + publish version</b></td></tr>
+<tr><td>HTTP API JWT không tự code</td><td><b>HTTP API + JWT authorizer built-in</b></td></tr>
+<tr><td>DynamoDB sync sang Sheet</td><td>Streams + Lambda, <code>NEW_IMAGE</code></td></tr>
+<tr><td>On-prem AD federation tới AWS Console</td><td><b>AWS Directory Service for Microsoft AD + trust</b></td></tr>
 <tr><td>Notify failure ProcessMessages Lambda</td><td>Async Failure Destination (SNS ErrorTopic)</td></tr>
-<tr><td>Provision test infra nhieu account + tests</td><td>CodePipeline + CloudFormation StackSets + CodeBuild</td></tr>
-<tr><td>CloudFront FLE -> DB ciphertext bug</td><td>Lambda decrypt voi KMS truoc khi ghi DB</td></tr>
-<tr><td>Cross-account CFN truy cap S3 code</td><td>Bucket policy principal: account IDs cu the</td></tr>
-<tr><td>Lambda truy cap S3 nhay cam, temp creds</td><td>Execution role + policy gioi han object</td></tr>
-<tr><td>Log on-prem -> CloudWatch tap trung</td><td>CloudWatch agent on-premises</td></tr>
+<tr><td>Provision test infra nhiều account + tests</td><td><b>CodePipeline + CloudFormation StackSets + CodeBuild</b></td></tr>
+<tr><td>CloudFront FLE → DB ciphertext bug</td><td>Lambda decrypt với KMS trước khi ghi DB</td></tr>
+<tr><td>Cross-account CFN truy cập S3 code</td><td>Bucket policy <code>Principal: account IDs</code> cụ thể</td></tr>
+<tr><td>Lambda truy cập S3 nhạy cảm, temp creds</td><td><b>Execution role</b> + policy giới hạn object</td></tr>
+<tr><td>Log on-prem → CloudWatch tập trung</td><td><b>CloudWatch agent</b> on-premises</td></tr>
+<tr><td>Đo rate + latency của SNS FIFO</td><td><b>AWS X-Ray</b> active tracing</td></tr>
+<tr><td>Custom CloudWatch metrics namespace</td><td><b>EMF</b> (Embedded Metric Format)</td></tr>
 </table>
 </section>
 
-<section>
-<h2>10. Cach cac service ket noi voi nhau (cheat-sheet)</h2>
+<section id="connect">
+<h2><span class="num">10</span>Cheat-sheet — Cách các service kết nối với nhau</h2>
+
 <ul>
-<li><b>S3 -> Lambda</b>: S3 Event Notification (s3:ObjectCreated:*) hoac qua SNS/SQS/EventBridge.</li>
-<li><b>S3 -> SNS -> nhieu SQS</b>: fan-out voi subscription filter policy.</li>
-<li><b>API Gateway -> Lambda</b>: REST/HTTP API tich hop Lambda proxy; HTTP API ho tro JWT authorizer.</li>
-<li><b>Lambda -> RDS private</b>: Lambda attach VPC + private subnet + SG; them RDS Proxy de pool.</li>
-<li><b>Lambda async -> destination</b>: Success/Failure destination = SQS, SNS, EventBridge, Lambda.</li>
-<li><b>SQS -> Lambda</b>: event source mapping; Visibility timeout phai &gt;= Lambda timeout.</li>
-<li><b>SNS FIFO -> SMS/SQS/Lambda</b>: ordering + dedup, ho tro fan-out.</li>
-<li><b>DynamoDB Streams -> Lambda</b>: NEW_IMAGE/OLD_IMAGE/NEW_AND_OLD/KEYS_ONLY.</li>
-<li><b>Kinesis Firehose -> Lambda transform -> S3</b>: redact/transform truoc khi luu.</li>
-<li><b>CloudFront -> Origin (ALB/S3/Lambda function URL)</b>: forward header (Accept-Language, CloudFront-Viewer-Country) de origin tra content phu hop.</li>
-<li><b>Step Functions -> Lambda/ECS/SNS/SQS</b>: orchestration tuan tu/song song.</li>
-<li><b>CodePipeline -> CodeBuild -> CloudFormation/StackSets/SAM/CodeDeploy</b>: CI/CD chuan.</li>
-<li><b>Config -> EventBridge -> SNS</b>: phat hien compliance change + thong bao.</li>
-<li><b>Cognito User Pool -> API Gateway authorizer</b>: bao ve backend API bang JWT.</li>
-<li><b>Cognito Identity Pool -> STS -> S3/DynamoDB</b>: cap temporary AWS credentials cho client.</li>
-<li><b>KMS GenerateDataKey -> Client encrypt -> S3 PutObject</b>: client-side envelope encryption.</li>
-<li><b>Secrets Manager -> Lambda fetch runtime -> RDS</b>: credential luon moi sau rotation.</li>
-<li><b>AppConfig -> AppConfig Agent (sidecar) -> EC2/Lambda localhost</b>: feature flag polling.</li>
+<li><b>S3 → Lambda</b>: S3 Event Notification (<code>s3:ObjectCreated:*</code>) hoặc qua SNS/SQS/EventBridge.</li>
+<li><b>S3 → SNS → nhiều SQS</b>: fan-out với <em>subscription filter policy</em>.</li>
+<li><b>API Gateway → Lambda</b>: REST/HTTP API tích hợp Lambda proxy; HTTP API hỗ trợ JWT authorizer built-in.</li>
+<li><b>Lambda → RDS private</b>: Lambda attach VPC + private subnet + SG; thêm RDS Proxy để pool.</li>
+<li><b>Lambda async → destination</b>: Success/Failure destination = SQS, SNS, EventBridge, Lambda.</li>
+<li><b>SQS → Lambda</b>: event source mapping; Visibility timeout phải ≥ Lambda timeout.</li>
+<li><b>SNS FIFO → SMS/SQS/Lambda</b>: ordering + dedup, hỗ trợ fan-out.</li>
+<li><b>DynamoDB Streams → Lambda</b>: NEW_IMAGE / OLD_IMAGE / NEW_AND_OLD / KEYS_ONLY.</li>
+<li><b>Kinesis Firehose → Lambda transform → S3</b>: redact/transform trước khi lưu.</li>
+<li><b>CloudFront → Origin</b> (ALB/S3/Lambda function URL): forward header (<code>Accept-Language</code>, <code>CloudFront-Viewer-Country</code>) để origin trả content phù hợp.</li>
+<li><b>Step Functions → Lambda/ECS/SNS/SQS</b>: orchestration tuần tự/song song.</li>
+<li><b>CodePipeline → CodeBuild → CloudFormation/StackSets/SAM/CodeDeploy</b>: CI/CD chuẩn.</li>
+<li><b>Config → EventBridge → SNS</b>: phát hiện compliance change + thông báo.</li>
+<li><b>Cognito User Pool → API Gateway authorizer</b>: bảo vệ backend API bằng JWT.</li>
+<li><b>Cognito Identity Pool → STS → S3/DynamoDB</b>: cấp temporary AWS credentials cho client.</li>
+<li><b>KMS GenerateDataKey → Client encrypt → S3 PutObject</b>: client-side envelope encryption.</li>
+<li><b>Secrets Manager → Lambda fetch runtime → RDS</b>: credential luôn mới sau rotation.</li>
+<li><b>AppConfig → AppConfig Agent (sidecar) → EC2/Lambda localhost</b>: feature flag polling.</li>
+<li><b>CloudWatch agent (on-prem) → CloudWatch Logs</b>: tập trung log từ máy on-prem.</li>
+<li><b>X-Ray active tracing → Service map</b>: phân tích latency, click edge để gồm network.</li>
 </ul>
+
+<div class="callout tip" data-icon="🌟">
+<b>Nguyên tắc vàng khi thi DVA-C02:</b>
+<ul style="margin:6px 0">
+<li>"Least operational overhead" → ưu tiên managed service, built-in feature (vd JWT authorizer, EMF, AppConfig Agent).</li>
+<li>"Least privilege" → cấp đúng quyền, scope ARN cụ thể, dùng role thay vì user.</li>
+<li>"Most secure" → temporary credentials (IAM role) thay vì long-term keys; KMS thay vì hardcode.</li>
+<li>"Lowest latency" → ElastiCache cho cache, Regional endpoint cho STS, /tmp cho Lambda local.</li>
+<li>"Cost-effective" → S3 Standard cho hot data, Long polling cho SQS, Lambda Provisioned chỉ khi cần.</li>
+</ul>
+</div>
 </section>
 
 <footer>
-<p>Tai lieu nay duoc tong hop tu Practice Test 1 (cau 1 - 65) - AWS Certified Developer Associate (DVA-C02).</p>
-<p>Cap nhat cuoi: 2026-05-12. Vui long doi chieu voi AWS docs chinh thuc khi lam project that.</p>
+<p>📚 Tài liệu tổng hợp từ <b>Practice Test 1 — câu 1 đến 65</b> · AWS Certified Developer Associate (DVA-C02).</p>
+<p>Cập nhật cuối: <b>2026-05-12</b> · Phiên bản tiếng Việt có dấu, nền giấy vàng.</p>
+<p>Đối chiếu với <em>AWS Documentation</em> chính thức khi áp dụng vào dự án thật. <span class="heart">❤</span></p>
 </footer>
+
 </main>
 </body></html>
